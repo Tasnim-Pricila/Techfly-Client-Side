@@ -17,11 +17,11 @@ const Header = () => {
         });
         setMenuIcon(false);
     }
-    
-    if(loading){
+
+    if (loading) {
         return <p>Loading</p>
     }
-    const logOut = () =>{
+    const logOut = () => {
         signOut(auth);
     }
 
@@ -48,10 +48,14 @@ const Header = () => {
                         className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
                         My Portfolio
                     </NavLink>
-                    <NavLink to='/dashboard'
-                        className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
-                        Dashboard
-                    </NavLink>
+                    {
+                        user &&
+                        <NavLink to='/dashboard'
+                            className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
+                            Dashboard
+                        </NavLink>
+                    }
+
                     <NavLink to='/contact'
                         className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
                         Contact
