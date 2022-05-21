@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
+import SocialLogin from '../Shared/SocialLogin';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -26,7 +27,7 @@ const Login = () => {
                 <input type="submit" className="btn btn-info w-1/3" value='Login' />
             </form>
             </div>
-            
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
