@@ -7,6 +7,7 @@ import Home from './pages/Home/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Portfolio from './pages/Portfolio/Portfolio';
+import PurchaseParts from './pages/PurchaseParts/PurchaseParts';
 import RequireAuth from './pages/RequireAuth';
 import Signup from './pages/Signup';
 import Footer from './Shared/Footer';
@@ -28,6 +29,11 @@ function App() {
         <Route path='/dashboard' element={
           <RequireAuth>
             <Dashboard />
+          </RequireAuth>
+        }></Route>
+        <Route path='/purchase/:id' element={
+          <RequireAuth>
+            <PurchaseParts/>
           </RequireAuth>
         }></Route>
       </Routes>

@@ -67,7 +67,12 @@ const Header = () => {
                                 Login
                             </NavLink>
                             :
-                            <button className='btn btn-secondary' onClick={logOut}>Logout</button>
+                            <>
+                                <p className='bg-primary'>Welcome {user.displayName}</p>
+                                {/* <p className='bg-primary'>{user.email}</p> */}
+                                <button className='btn btn-secondary' onClick={logOut}>Logout</button>
+                            </>
+
                     }
                 </div>
             </div>
