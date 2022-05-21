@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { MenuIcon, XIcon } from '@heroicons/react/solid';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../firebase.init';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
 
     const [menuIcon, setMenuIcon] = useState(false);
+    const [user, loading] = useAuthState(auth);
 
     const handleScroll = () => {
         window.scrollTo({
@@ -12,6 +16,13 @@ const Header = () => {
             behavior: "smooth",
         });
         setMenuIcon(false);
+    }
+    
+    if(loading){
+        return <p>Loading</p>
+    }
+    const logOut = () =>{
+        signOut(auth);
     }
 
     return (
@@ -45,10 +56,15 @@ const Header = () => {
                         className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
                         Contact
                     </NavLink>
-                    <NavLink to='/login'
-                        className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
-                        Login
-                    </NavLink>
+                    {
+                        !user ?
+                            <NavLink to='/login'
+                                className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
+                                Login
+                            </NavLink>
+                            :
+                            <button className='btn btn-secondary' onClick={logOut}>Logout</button>
+                    }
                 </div>
             </div>
         </div>
