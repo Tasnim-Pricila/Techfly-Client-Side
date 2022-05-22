@@ -38,8 +38,6 @@ const AddReview = () => {
             })
     };
 
-
-
     return (
         <div>
             <div className='mx-auto'>
