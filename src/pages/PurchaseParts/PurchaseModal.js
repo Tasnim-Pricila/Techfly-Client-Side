@@ -13,7 +13,7 @@ const PurchaseModal = ({part, quantity, refetch, setModalData}) => {
         const purchase = {
             productName : title,
             quantity,
-            bookedBy: userName,
+            purchasedBy: userName,
             email,
             address: e.target.address.value,
             phone: e.target.phone.value,
