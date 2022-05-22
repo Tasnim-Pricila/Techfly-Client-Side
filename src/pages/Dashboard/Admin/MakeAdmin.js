@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 
 const MakeAdmin = () => {
+    // GEt USers 
     const { data: users, isLoading, refetch } = useQuery('users', () =>
         fetch('http://localhost:5000/users', {
             method: 'GET',
@@ -13,6 +14,20 @@ const MakeAdmin = () => {
 
     if (isLoading) {
         return <p>Loading...</p>
+    }
+    // MAke Admin 
+    const makeAdmin = (email) => {
+        fetch(`http://localhost:5000/user/admin/${email}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                refetch();
+                console.log(data);
+            })
     }
     return (
         <div>
@@ -33,7 +48,11 @@ const MakeAdmin = () => {
                                         <th>{index + 1}</th>
                                         <td className='font-semibold text-secondary'> {user.email} </td>
                                         <td>
-                                            <button className='btn btn-success'>Make Admin</button>
+                                            {
+                                                user.role!=='admin' &&
+                                                <button className='btn btn-success' onClick={() => makeAdmin(user.email)}>Make Admin</button>
+                                            }
+                                            
                                         </td>  
                                     </tr>
                                 )
