@@ -18,10 +18,10 @@ const Parts = () => {
         <div className='px-24 mb-12'>
             <p className='text-2xl text-center font-semibold my-12'>Parts</p>
             {
-                parts.map(part =>
+                parts.map (part =>
                     <div key={part._id}>
                         <div className="card card-compact w-96 bg-base-100 shadow-xl">
-                            <figure><img src={part.img} alt="Shoes" /></figure>
+                            <figure><img src={part.image} alt="Shoes" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{part.title}</h2>
                                 <p>{part.description}</p>

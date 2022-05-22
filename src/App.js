@@ -20,6 +20,7 @@ import ManageOrder from './pages/Dashboard/Admin/ManageOrder';
 import ManageProducts from './pages/Dashboard/Admin/ManageProducts';
 import MyProfile from './pages/Dashboard/MyProfile';
 import EditProfile from './pages/Dashboard/EditProfile';
+import Payment from './pages/Dashboard/Users/Payment';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path='makeAdmin' element={<MakeAdmin/>}> </Route>
           <Route path='manageProducts' element={<ManageProducts/>}> </Route>
           <Route path='myProfile' element={<MyProfile/>}></Route>
+          <Route path='payment/:id' element={<Payment/>}></Route>
         </Route>
 
       </Routes>
