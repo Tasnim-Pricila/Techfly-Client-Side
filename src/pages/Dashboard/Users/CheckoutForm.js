@@ -9,18 +9,20 @@ const CheckoutForm = ({ orders }) => {
     const [transactionID, seTransactionID] = useState('');
     const [clientSecret, setClientSecret] = useState('');
     const { price, purchasedBy, productName, email, _id } = orders;
+    console.log(price);
 
     useEffect(() => {
         fetch("http://localhost:5000/create-payment-intent", {
             method: "POST",
             headers: {
-                "content-Type": "application/json"
+                "content-Type": "application/json",
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`      
             },
             body: JSON.stringify({ price }),
         })
             .then((res) => res.json())
             .then((data) => {
-                if (data.clientSecret) {
+                if (data?.clientSecret) {
                     setClientSecret(data.clientSecret);
                 }
             })
@@ -32,7 +34,6 @@ const CheckoutForm = ({ orders }) => {
             return;
         }
         const card = elements.getElement(CardElement);
-
         if (card == null) {
             return;
         }
@@ -40,7 +41,6 @@ const CheckoutForm = ({ orders }) => {
             type: 'card',
             card,
         });
-
 
         setCardError(error?.message || '');
 
@@ -57,7 +57,6 @@ const CheckoutForm = ({ orders }) => {
                     },
                 })
 
-        // Handle result.error or result.paymentIntent
         if (intentError) {
             setCardError(intentError.message);
             setSuccess('');
@@ -75,7 +74,8 @@ const CheckoutForm = ({ orders }) => {
             fetch(`http://localhost:5000/purchase/${_id}`, {
                 method: 'PATCH',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify(payment)
             })
@@ -83,7 +83,6 @@ const CheckoutForm = ({ orders }) => {
                 .then(data => console.log(data));
         }
     }
-
 
 return (
     <div>

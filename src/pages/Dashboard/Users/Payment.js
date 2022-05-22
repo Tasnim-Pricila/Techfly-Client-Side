@@ -11,7 +11,12 @@ const Payment = () => {
     const { id } = useParams();
 
     const { data: orders, isLoading, refetch } = useQuery(['orders', id], () =>
-        fetch(`http://localhost:5000/purchase/${id}`)
+        fetch(`http://localhost:5000/purchase/${id}`, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
             .then(res => res.json()))
 
     if (isLoading) {
@@ -20,17 +25,17 @@ const Payment = () => {
 
     return (
         <>
-            <div class="card w-96 bg-base-100 shadow-xl">
-                <div class="card-body">
-                    <h2 class="card-title">Payment for {orders.productName} </h2>
+            <div className="card w-96 bg-base-100 shadow-xl">
+                <div className="card-body">
+                    <h2 className="card-title">Payment for {orders.productName} </h2>
                     <p>Pay $ {orders.price} </p>
-                    <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Buy Now</button>
+                    <div className="card-actions justify-end">
+                        <button className="btn btn-primary">Buy Now</button>
                     </div>
                 </div>
             </div>
-            <div class="card w-96 bg-base-100 shadow-xl mt-12">
-                <div class="card-body">
+            <div className="card w-96 bg-base-100 shadow-xl mt-12">
+                <div className="card-body">
                     <Elements stripe={stripePromise}>
                         <CheckoutForm orders={orders} />
                     </Elements>

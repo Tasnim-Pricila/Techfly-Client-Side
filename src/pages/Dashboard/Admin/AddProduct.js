@@ -45,6 +45,7 @@ const AddProduct = () => {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
+                             authorization: `Bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(productData)
                     })
@@ -56,48 +57,48 @@ const AddProduct = () => {
                             }
                             else {
                                 console.log(insertedData);
-                            }   
+                            }
                         })
                 }
-            
+
             })
-};
-return (
-    <div>
-        <div className='mx-auto'>
-            <div>
-                <p className='text-2xl my-12'>Add a Product</p>
-                <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
+    };
+    return (
+        <div>
+            <div className='mx-auto'>
+                <div>
+                    <p className='text-2xl my-12'>Add a Product</p>
+                    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
 
-                    <input placeholder='Product Name' type="text" className='input input-bordered input-info w-full max-w-xs' {...register("title")} />
-                    {errors.title?.type === 'required' && "Product Name is required"}
+                        <input placeholder='Product Name' type="text" className='input input-bordered input-info w-full max-w-xs' {...register("title")} />
+                        {errors.title?.type === 'required' && "Product Name is required"}
 
-                    <input type="number" placeholder='Price' className='input input-bordered input-info w-full max-w-xs' {...register("price", { required: true })} />
-                    {errors.price?.type === 'required' && "Price is required"}
+                        <input type="number" placeholder='Price' className='input input-bordered input-info w-full max-w-xs' {...register("price", { required: true })} />
+                        {errors.price?.type === 'required' && "Price is required"}
 
-                    <input type="number" placeholder='Minimum Quantiy need to be ordered' className='input input-bordered input-info w-full max-w-xs' {...register("minqty", { required: true })} />
-                    {errors.minqty?.type === 'required' && "This field is required"}
+                        <input type="number" placeholder='Minimum Quantiy need to be ordered' className='input input-bordered input-info w-full max-w-xs' {...register("minqty", { required: true })} />
+                        {errors.minqty?.type === 'required' && "This field is required"}
 
-                    <input type="number" placeholder='Available Quantity' className='input input-bordered input-info w-full max-w-xs' {...register("availableQty", { required: true })} />
-                    {errors.availableQty?.type === 'required' && "This field is required"}
+                        <input type="number" placeholder='Available Quantity' className='input input-bordered input-info w-full max-w-xs' {...register("availableQty", { required: true })} />
+                        {errors.availableQty?.type === 'required' && "This field is required"}
 
-                    <textarea placeholder='Description' className='input input-bordered input-info w-full max-w-xs' {...register("description", { required: true })} />
-                    {errors.description?.type === 'required' && "Description is required"}
+                        <textarea placeholder='Description' className='input input-bordered input-info w-full max-w-xs' {...register("description", { required: true })} />
+                        {errors.description?.type === 'required' && "Description is required"}
 
-                    <input placeholder='Name' type="text" defaultValue={userName} disabled className='input input-bordered input-info w-full max-w-xs' {...register("name")} />
+                        <input placeholder='Name' type="text" defaultValue={userName} disabled className='input input-bordered input-info w-full max-w-xs' {...register("name")} />
 
-                    <input placeholder='Email' type="email" defaultValue={email} disabled className='input input-bordered input-info w-full max-w-xs' {...register("email")} />
+                        <input placeholder='Email' type="email" defaultValue={email} disabled className='input input-bordered input-info w-full max-w-xs' {...register("email")} />
 
-                    <label htmlFor="image" className='font-semibold block'>Upload a Photo:</label>
-                    <input type='file' placeholder='Upload Product Photo' {...register("image", { required: true, })} />
-                    {errors.image?.type === 'required' && "Password is required"}
+                        <label htmlFor="image" className='font-semibold block'>Upload a Photo:</label>
+                        <input type='file' placeholder='Upload Product Photo' {...register("image", { required: true, })} />
+                        {errors.image?.type === 'required' && "Password is required"}
 
-                    <input type="submit" className="btn btn-info w-1/3" value='Add Product' />
-                </form>
+                        <input type="submit" className="btn btn-info w-1/3" value='Add Product' />
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
 };
 
 export default AddProduct;

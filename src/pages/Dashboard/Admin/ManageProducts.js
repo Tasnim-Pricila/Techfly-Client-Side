@@ -18,7 +18,11 @@ const ManageProducts = () => {
 
     const handleDelete = async (id) => {
         fetch(`http://localhost:5000/parts/${id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+           
         })
             .then(res => res.json())
             .then(data => {

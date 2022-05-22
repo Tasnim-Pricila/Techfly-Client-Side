@@ -9,7 +9,12 @@ const PurchaseParts = () => {
 
 
     const { data: part, isLoading, refetch } = useQuery('part', () =>
-        fetch(`http://localhost:5000/parts/${id}`)
+        fetch(`http://localhost:5000/parts/${id}`,{
+            method: 'GET',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+        })
             .then(res => res.json())
     )
 
@@ -32,7 +37,7 @@ const PurchaseParts = () => {
     return (
         <div className='px-24 my-24'>
             <div className="card lg:card-side shadow-xl">
-                <figure><img src={part.img} alt="Album" /></figure>
+                <figure><img src={part.image} alt="Album" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{part.title}</h2>
                     <h6 className='pb-8'>{part.description}</h6>
