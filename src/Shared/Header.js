@@ -36,7 +36,7 @@ const Header = () => {
                 </div>
                 <div className={`flex md:flex-row md:gap-8 flex-col md:static duration-1000 absolute bg-[#333636] h-[100vh] md:h-auto md:bg-transparent text-center uppercase items-center gap-2 overflow-hidden
                 ${menuIcon ? 'right-0 left-0 top-14 py-4 gap-2' : 'right-0 left-[500px] top-14'} `}>
-                    <NavLink to='/home'
+                    <NavLink to='/'
                         className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
                         Home
                     </NavLink>

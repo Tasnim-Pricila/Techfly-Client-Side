@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import useToken from '../CustomHook/useToken';
 import auth from '../firebase.init';
 import SocialLogin from '../Shared/SocialLogin';
 
 const Signup = () => {
+    const navigate = useNavigate();
     const [createUserWithEmailAndPassword, emailUser, emailLoading, emailError] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating] = useUpdateProfile(auth);
 
@@ -21,6 +24,14 @@ const Signup = () => {
         }
 
     };
+    const [token] = useToken(emailUser);
+
+    useEffect(() => {
+        if (token) {
+            navigate('/');
+        }
+    }, [token, navigate])
+
     if (emailUser) {
         console.log(emailUser);
     }
