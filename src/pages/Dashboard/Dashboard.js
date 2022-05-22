@@ -8,8 +8,6 @@ const Dashboard = () => {
 
     const [user, loading] = useAuthState(auth);
     const [admin] = useAdmin(user);
-    console.log(user.email)
-
     if (loading) {
         <p>Loading...</p>
     }
@@ -35,6 +33,9 @@ const Dashboard = () => {
                             admin &&
                             <>
                                 <li>
+                                    <Link to='/dashboard'>Manage Products</Link>
+                                </li>
+                                <li>
                                     <Link to='/dashboard/manageOrders'>Manage All Orders</Link>
                                 </li>
                                 <li>
@@ -43,10 +44,6 @@ const Dashboard = () => {
                                 <li>
                                     <Link to='/dashboard/makeAdmin'>Make Admin</Link>
                                 </li>
-                                <li>
-                                    <Link to='/dashboard/manageProducts'>Manage Products</Link>
-                                </li>
-
                             </>
                         }
                         <li>

@@ -4,8 +4,6 @@ const useAdmin = (user) => {
 
     const [admin, setAdmin] = useState('');
     const email = user?.email;
-
-
     if(email){
         fetch(`http://localhost:5000/user/${email}`, {
             method:'GET',

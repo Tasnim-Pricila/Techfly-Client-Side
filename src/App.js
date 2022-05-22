@@ -21,8 +21,18 @@ import ManageProducts from './pages/Dashboard/Admin/ManageProducts';
 import MyProfile from './pages/Dashboard/MyProfile';
 import EditProfile from './pages/Dashboard/EditProfile';
 import Payment from './pages/Dashboard/Users/Payment';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from './firebase.init';
+import useAdmin from './CustomHook/useAdmin';
 
 function App() {
+  const [user, loading] = useAuthState(auth);
+  const [admin] = useAdmin(user);
+  // console.log(user.email)
+
+  if (loading) {
+      <p>Loading...</p>
+  }
   return (
     <div className="App">
       <Header></Header>
@@ -43,18 +53,23 @@ function App() {
 
         <Route path='/dashboard' element={
           <RequireAuth> <Dashboard /> </RequireAuth>}>
-          <Route index element={<MyOrders/>}> </Route>
+            {
+              !admin &&
+              <Route index element={<MyOrders/>}> </Route>
+            }
+            {
+              admin &&
+              <Route index element={<ManageProducts/>}> </Route>
+            }
           <Route path='review' element={<AddReview/>}> </Route>
           <Route path='manageOrders' element={<ManageOrder/>}> </Route>
           <Route path='addProduct' element={<AddProduct/>}> </Route>
           <Route path='makeAdmin' element={<MakeAdmin/>}> </Route>
-          <Route path='manageProducts' element={<ManageProducts/>}> </Route>
           <Route path='myProfile' element={<MyProfile/>}></Route>
           <Route path='payment/:id' element={<Payment/>}></Route>
         </Route>
 
       </Routes>
-
       <Footer></Footer>
     </div>
   );
