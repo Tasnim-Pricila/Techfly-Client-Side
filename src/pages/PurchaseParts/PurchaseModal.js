@@ -6,13 +6,14 @@ const PurchaseModal = ({part, quantity, refetch, setModalData}) => {
     const [user, loading] = useAuthState(auth);
     const email = user?.email;
     const userName = user?.displayName;
-    const {title} = part;
+    const {title, price} = part;
 
     const handleSubmit = e => {
         e.preventDefault();
         const purchase = {
             productName : title,
             quantity,
+            price,
             purchasedBy: userName,
             email,
             address: e.target.address.value,
@@ -52,6 +53,7 @@ const PurchaseModal = ({part, quantity, refetch, setModalData}) => {
                     <form className='flex flex-col items-center' 
                     onSubmit={handleSubmit}>             
                         <input type="text" name='product' defaultValue={title} disabled placeholder="Product Name" className="input input-bordered input-primary w-full max-w-xs mb-4" />
+                        <input type="number" name='product' defaultValue={price} disabled placeholder="Product Name" className="input input-bordered input-primary w-full max-w-xs mb-4" />
                         <input type="number" name='quantity' defaultValue={quantity} disabled placeholder="Product Name" className="input input-bordered input-primary w-full max-w-xs mb-4" />
                         <input type="text" name='name' defaultValue={userName} disabled placeholder="Your Name" className="input input-bordered input-primary w-full max-w-xs mb-4" />
                         <input type="email" name='email' defaultValue={email} disabled placeholder="Your Email" className="input input-bordered input-primary w-full max-w-xs mb-4" />
