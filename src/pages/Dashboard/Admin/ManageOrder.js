@@ -1,7 +1,6 @@
 import { TrashIcon } from '@heroicons/react/solid';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import DeleteModal from './DeleteModal';
 import DeleteOrderModal from './DeleteOrderModal';
 
 const ManageOrder = () => {

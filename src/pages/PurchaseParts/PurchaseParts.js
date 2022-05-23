@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
-import PurchaseModal from './PurchaseModal';
 import SingleItem from './SingleItem';
 
 const PurchaseParts = () => {

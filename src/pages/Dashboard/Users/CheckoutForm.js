@@ -10,7 +10,7 @@ const CheckoutForm = ({ orders }) => {
     const [clientSecret, setClientSecret] = useState('');
     const [processing, setProcessing] = useState(false);
     const { price, purchasedBy, productName, email, _id } = orders;
-
+    console.log(price);
     useEffect(() => {
         fetch("http://localhost:5000/create-payment-intent", {
             method: "POST",
@@ -46,8 +46,7 @@ const CheckoutForm = ({ orders }) => {
         setSuccess('');
         setProcessing(true);
 
-        stripe
-            .confirmCardPayment(clientSecret, {
+        stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
                     card: card,
                     billing_details: {
