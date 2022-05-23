@@ -1,9 +1,10 @@
 import React from 'react';
+import notfound from '../../src/images/notfound.gif'
 
 const NotFound = () => {
     return (
         <div>
-            gggg
+            <img src={notfound} alt="" className='h-[90vh] w-screen object-cover' />
         </div>
     );
 };

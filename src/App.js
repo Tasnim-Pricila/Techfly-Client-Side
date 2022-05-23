@@ -31,7 +31,7 @@ function App() {
   // console.log(user.email)
 
   if (loading) {
-      <p>Loading...</p>
+    <p>Loading...</p>
   }
   return (
     <div className="App">
@@ -53,23 +53,34 @@ function App() {
 
         <Route path='/dashboard' element={
           <RequireAuth> <Dashboard /> </RequireAuth>}>
-            {
-              !admin &&
-              <Route index element={<MyOrders/>}> </Route>
-            }
-            {
-              admin &&
-              <Route index element={<ManageProducts/>}> </Route>
-            }
-          <Route path='review' element={<AddReview/>}> </Route>
-          <Route path='manageOrders' element={<ManageOrder/>}> </Route>
-          <Route path='addProduct' element={<AddProduct/>}> </Route>
-          <Route path='makeAdmin' element={<MakeAdmin/>}> </Route>
-          <Route path='myProfile' element={<MyProfile/>}></Route>
-          <Route path='editProfile/:email' element={<EditProfile/>}></Route>
-          <Route path='payment/:id' element={<Payment/>}></Route>
+          {/* {
+            !admin &&
+            <Route index element={<MyOrders />}> </Route>
+          }
+          {
+            admin &&
+            <Route index element={<ManageProducts />}> </Route>
+          } */}
+          {
+            admin &&
+            <>
+              <Route index element={<ManageProducts />}> </Route>
+              <Route path='manageOrders' element={<ManageOrder />}> </Route>
+              <Route path='addProduct' element={<AddProduct />}> </Route>
+              <Route path='makeAdmin' element={<MakeAdmin />}> </Route>
+            </>
+          }
+          {
+            !admin &&
+            <>
+              <Route index element={<MyOrders />}> </Route>
+              <Route path='review' element={<AddReview />}> </Route>
+              <Route path='payment/:id' element={<Payment />}></Route>
+            </>
+          }
+          <Route path='myProfile' element={<MyProfile />}></Route>
+          <Route path='editProfile/:email' element={<EditProfile />}></Route>
         </Route>
-
       </Routes>
       <Footer></Footer>
     </div>

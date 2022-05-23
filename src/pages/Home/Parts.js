@@ -15,19 +15,20 @@ const Parts = () => {
     const handlePurchase = (id) => {
         navigate(`/purchase/${id}`);
     }
+
     return (
         <>
             <p className='text-2xl text-center font-semibold my-12'>Parts</p>
-            <div className='px-24 mb-12 grid grid-cols-3'>
+            <div className='px-24 mb-12 grid grid-cols-3 gap-8'>
                 {
-                    parts.map(part =>
+                    parts.slice(0, 6).reverse().map(part =>
                         <div key={part._id} >
-                            <div className="card card-compact w-96 bg-base-100 shadow-xl'>">
-                                <figure><img src={part.image} alt="Shoes" /></figure>
+                            <div className="card card-compact shadow-xl border px-4 py-6">
+                                <figure><img src={part.image} alt="Shoes" className='h-[300px] rounded-lg w-full object-cover' /></figure>
                                 <div className="card-body">
                                     <h2 className="card-title">{part.title}</h2>
-                                    <p>{part.description}</p>
-                                    <p>{part.price}</p>
+                                    <p className='h-48'>{part.description}</p>
+                                    <p>$ {part.price}</p>
                                     <p>Minimum Order Quantity: {part.minimumOrderQuantity}</p>
                                     <p>Available Quantity: {part.availableQuantity}</p>
                                     <div className="card-actions justify-end">
