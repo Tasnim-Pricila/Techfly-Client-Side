@@ -5,7 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from './CheckoutForm';
 
-const stripePromise = loadStripe('pk_test_51L2D2EKZuhtVgyM7S2CeyD5YrpaY7x1Ab3pNWv4hqTyRbvblNQ2KZhgUz71r0JbCZCytaYDey0oYNYlZ1t3QNseW00ZewuwFk9');
+const stripePromise=loadStripe('pk_test_51L2D2EKZuhtVgyM7S2CeyD5YrpaY7x1Ab3pNWv4hqTyRbvblNQ2KZhgUz71r0JbCZCytaYDey0oYNYlZ1t3QNseW00ZewuwFk9');
 
 const Payment = () => {
     const { id } = useParams();
@@ -28,7 +28,7 @@ const Payment = () => {
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="card-title">Payment for {orders.productName} </h2>
-                    <p>Pay $ {orders.price} </p>
+                    <p> Pay $ {orders.price} </p>
                     <div className="card-actions justify-end">
                         <button className="btn btn-primary">Buy Now</button>
                     </div>

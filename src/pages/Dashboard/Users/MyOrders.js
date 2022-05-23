@@ -48,7 +48,17 @@ const MyOrders = () => {
                                     <th>{index + 1}</th>
                                     <td className='font-semibold text-secondary'>{order.productName}</td>
                                     <td>{order.quantity} </td>
-                                    <td> <Link to={`/dashboard/payment/${order._id}`}>Pay</Link> </td>
+                                    <td> 
+                                        {
+                                            !order.paid &&
+                                            <Link to={`/dashboard/payment/${order._id}`} className='btn btn-success btn-outline'>Pay</Link> 
+                                        }
+                                        {
+                                            order.paid &&
+                                            <p className='btn btn-success btn-outline'>Paid</p> 
+                                        }
+                                        
+                                    </td>
                                     <td> Delete </td>
                                 </tr>
                             )

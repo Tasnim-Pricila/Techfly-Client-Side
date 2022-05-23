@@ -6,17 +6,17 @@ const CheckoutForm = ({ orders }) => {
     const elements = useElements();
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
-    const [transactionID, seTransactionID] = useState('');
+    const [transactionID, setTransactionID] = useState('');
     const [clientSecret, setClientSecret] = useState('');
+    const [processing, setProcessing] = useState(false);
     const { price, purchasedBy, productName, email, _id } = orders;
-    console.log(price);
 
     useEffect(() => {
         fetch("http://localhost:5000/create-payment-intent", {
             method: "POST",
             headers: {
-                "content-Type": "application/json",
-                authorization: `Bearer ${localStorage.getItem('accessToken')}`      
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify({ price }),
         })
@@ -34,7 +34,7 @@ const CheckoutForm = ({ orders }) => {
             return;
         }
         const card = elements.getElement(CardElement);
-        if (card == null) {
+        if (card === null) {
             return;
         }
         const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -43,80 +43,87 @@ const CheckoutForm = ({ orders }) => {
         });
 
         setCardError(error?.message || '');
+        setSuccess('');
+        setProcessing(true);
 
-        const { paymentIntent, error: intentError } = await stripe.confirmCardPayment
-            (clientSecret,
-                {
-                    payment_method: {
-                        card: card,
-                        billing_details: {
-                            name: purchasedBy,
-                            productName: productName,
-                            email: email
-                        },
+        stripe
+            .confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: purchasedBy,
+                        email: email
                     },
-                })
-
-        if (intentError) {
-            setCardError(intentError.message);
-            setSuccess('');
-        }
-        else {
-            setCardError('');
-            setSuccess('Your payment is completed');
-            seTransactionID(paymentIntent.id);
-
-            const payment = {
-                purchaseId: _id,
-                transactionID: transactionID,
-            }
-
-            fetch(`http://localhost:5000/purchase/${_id}`, {
-                method: 'PATCH',
-                headers: {
-                    'content-type': 'application/json',
-                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 },
-                body: JSON.stringify(payment)
             })
-                .then(res => res.json())
-                .then(data => console.log(data));
-        }
+            .then(function (result) {
+                // Handle result.error or result.paymentIntent
+                if (result.paymentIntent) {
+                    setCardError('');
+                    console.log(result.paymentIntent);
+                    setSuccess('Your payment is completed');
+                    setTransactionID(result.paymentIntent.id);
+
+                    const payment = {
+                        purchaseId: _id,
+                        transactionID: result.paymentIntent.id,
+                    }
+
+                    fetch(`http://localhost:5000/purchase/${_id}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'content-type': 'application/json',
+                            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify(payment)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            setProcessing(false);
+                            console.log(data);
+                        });
+                }
+                if (result.error) {
+                    setCardError(result.error.message);
+                    setProcessing(false);
+
+                }
+            });
     }
 
-return (
-    <div>
-        <form onSubmit={handleSubmit}>
-            <CardElement
-                options={{
-                    style: {
-                        base: {
-                            fontSize: '16px',
-                            color: '#424770',
-                            '::placeholder': {
-                                color: '#aab7c4',
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <CardElement
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: '16px',
+                                color: '#424770',
+                                '::placeholder': {
+                                    color: '#aab7c4',
+                                },
+                            },
+                            invalid: {
+                                color: '#9e2146',
                             },
                         },
-                        invalid: {
-                            color: '#9e2146',
-                        },
-                    },
-                }}
-            />
-            <button type="submit" className='btn btn-info btn-sm mt-4'
-                disabled={!stripe || !clientSecret}>
-                Pay
-            </button>
+                    }}
+                />
+                <button type="submit" className='btn btn-info btn-sm mt-4'
+                    disabled={!stripe || !clientSecret || success}>
+                    Pay
+                </button>
 
-        </form>
-        {
-            cardError && <p>{cardError}</p>
-        }
-        {
-            success && <p>{success} Transaction ID: {transactionID} </p>
-        }
-    </div>
-);
+            </form>
+            {
+                cardError && <p>{cardError}</p>
+            }
+            {
+                success && <p>{success} Transaction ID: {transactionID} </p>
+            }
+        </div>
+    );
 };
 
 export default CheckoutForm;
