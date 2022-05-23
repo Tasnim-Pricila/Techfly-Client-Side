@@ -13,15 +13,14 @@ const SocialLogin = () => {
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [token] = useToken(googleUser);
 
-    const from = location.state?.from?.pathname || '/';
     useEffect(() => {
         if (token) {
-             navigate(from, { replace: true });
+             navigate('/dashboard');
         }
-    }, [from, navigate, token])
+    }, [ navigate, token])
 
     if (googleUser) {
-        console.log(googleUser);
+        // console.log(googleUser);
     }
     if (googleLoading) {
         return <p>Loading</p>

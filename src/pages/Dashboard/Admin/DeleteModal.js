@@ -14,7 +14,7 @@ const DeleteModal = ({ deletingProduct, handleDelete }) => {
                         <div className="modal-action">
                             <button className='btn btn-success px-8' 
                             onClick={() => handleDelete(_id)}>Yes</button>
-                            <label for="deleteModal" className="btn">Cancel</label>
+                            <label htmlFor="deleteModal" className="btn">Cancel</label>
                         </div>
                     </div>
                 </div>

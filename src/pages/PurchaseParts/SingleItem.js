@@ -5,7 +5,9 @@ const SingleItem = ({ part, setModalData, minQuantity, modalData, refetch }) => 
 
     const [quantity, setQuantity] = useState(minQuantity);
 
-    const{title, price, availableQuantity, image, minimumOrderQuantity, description} = part
+    const { title, price, availableQuantity, image, minimumOrderQuantity, description } = part
+    const availableQty = parseInt(availableQuantity);
+    const minQty = parseInt(minimumOrderQuantity);
 
     const handleIncrease = () => {
         setQuantity(parseInt(quantity) + 1);
@@ -24,11 +26,11 @@ const SingleItem = ({ part, setModalData, minQuantity, modalData, refetch }) => 
                         <h2 className="card-title">{price}</h2>
                         <h6 className='pb-8'>{description}</h6>
                         <div className='flex font-semibold w-[100px] items-center gap-4'>
-                            <button className='btn btn-primary' disabled={quantity == availableQuantity} onClick={handleIncrease}> + </button>
+                            <button className='btn btn-primary' disabled={quantity === availableQty} onClick={handleIncrease}> + </button>
                             <p>
                                 {quantity}
                             </p>
-                            <button className='btn btn-primary' disabled={quantity == minimumOrderQuantity} onClick={handleDecrease} >
+                            <button className='btn btn-primary' disabled={quantity === minQty} onClick={handleDecrease} >
                                 -
                             </button>
                         </div>
@@ -41,14 +43,14 @@ const SingleItem = ({ part, setModalData, minQuantity, modalData, refetch }) => 
 
             </div>
             {
-            modalData && 
-            <PurchaseModal
-                part={part}
-                quantity={quantity}
-                refetch={refetch}
-                setModalData={setModalData}>
-            </PurchaseModal>
-        }
+                modalData &&
+                <PurchaseModal
+                    part={part}
+                    quantity={quantity}
+                    refetch={refetch}
+                    setModalData={setModalData}>
+                </PurchaseModal>
+            }
         </div>
     );
 };

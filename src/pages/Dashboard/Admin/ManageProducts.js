@@ -61,7 +61,7 @@ const ManageProducts = () => {
                                     <td>{product.price}</td>
                                     <td>{product.availableQuantity}</td>
                                     <td>
-                                        <label htmlFor="deleteModal" class="btn btn-error btn-outline" onClick={() => setDeletingProduct(product)}>
+                                        <label htmlFor="deleteModal"className="btn btn-error btn-outline" onClick={() => setDeletingProduct(product)}>
                                             Delete
                                             <TrashIcon className='w-6 h-5'></TrashIcon>
                                         </label>

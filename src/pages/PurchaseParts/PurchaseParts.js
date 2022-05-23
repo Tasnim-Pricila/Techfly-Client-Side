@@ -22,7 +22,7 @@ const PurchaseParts = () => {
         return <p>Loading...</p>
     }
 
-    const minQuantity = part.minimumOrderQuantity;
+    const minQuantity = parseInt(part.minimumOrderQuantity);
 
     return (
         <>
