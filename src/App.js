@@ -66,6 +66,7 @@ function App() {
           <Route path='addProduct' element={<AddProduct/>}> </Route>
           <Route path='makeAdmin' element={<MakeAdmin/>}> </Route>
           <Route path='myProfile' element={<MyProfile/>}></Route>
+          <Route path='editProfile/:email' element={<EditProfile/>}></Route>
           <Route path='payment/:id' element={<Payment/>}></Route>
         </Route>
 

@@ -19,6 +19,7 @@ const PurchaseModal = ({part, quantity, refetch, setModalData}) => {
             address: e.target.address.value,
             phone: e.target.phone.value,
         }
+
         console.log(purchase);
         fetch('http://localhost:5000/purchase', {
             method: 'POST',
