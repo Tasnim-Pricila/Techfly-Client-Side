@@ -5,6 +5,7 @@ import DeleteOrderModal from './DeleteOrderModal';
 
 const ManageOrder = () => {
     const [deletingOrder, setDeletingOrder] = useState(null);
+
     const { data: purchases, isLoading, refetch } = useQuery('purchase', () =>
         fetch('http://localhost:5000/purchase', {
         })
@@ -16,10 +17,10 @@ const ManageOrder = () => {
     const handleDelete = async (id) => {
         fetch(`http://localhost:5000/purchase/${id}`, {
             method: 'DELETE',
-            headers:{
+            headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
-           
+
         })
             .then(res => res.json())
             .then(data => {
@@ -27,10 +28,30 @@ const ManageOrder = () => {
                     setDeletingOrder(null);
                     refetch();
                 }
-                else{
+                else {
                     console.log(data);
                 }
             })
+    }
+    const handleStatus = (id) => {
+        const status = {
+            status: 'Shipped'
+        }
+
+        fetch(`http://localhost:5000/purchase/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(status)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                refetch();
+            });
+
     }
     return (
         <div>
@@ -45,6 +66,7 @@ const ManageOrder = () => {
                                 <th> Price</th>
                                 <th> Quantity </th>
                                 <th> Purchased By </th>
+
                                 <th> Status </th>
                                 <th> Manage </th>
                             </tr>
@@ -59,13 +81,25 @@ const ManageOrder = () => {
                                         <td>{purchase.quantity}</td>
                                         <td>{purchase.purchasedBy} <br /> {purchase.email}</td>
                                         <td>
-                                            <button className='btn btn-success'>Pending</button>
+                                            {
+                                                purchase.paid && <button className='btn btn-success' onClick={() => handleStatus(purchase._id)} >{purchase.status}</button>
+                                            }
+                                            {
+                                                !purchase.paid && <p className='btn-warning py-1 rounded font-bold'>UNPAID</p>
+                                            }
+
                                         </td>
+
                                         <td>
-                                            <label htmlFor="deleteOrderModal" className="btn btn-error btn-outline" onClick={() => setDeletingOrder(purchase)}>
-                                                Delete
-                                                <TrashIcon className='w-6 h-5'></TrashIcon>
-                                            </label>
+                                            {
+
+                                                !purchase.paid &&
+                                                <label htmlFor="deleteOrderModal" className="btn btn-error btn-outline" onClick={() => setDeletingOrder(purchase)}>
+                                                    Delete
+                                                    <TrashIcon className='w-6 h-5'></TrashIcon>
+                                                </label>
+                                            }
+
                                         </td>
                                     </tr>
                                 )

@@ -66,6 +66,7 @@ const CheckoutForm = ({ orders }) => {
                     const payment = {
                         purchaseId: _id,
                         transactionID: result.paymentIntent.id,
+                        status: 'Pending'
                     }
 
                     fetch(`http://localhost:5000/purchase/${_id}`, {
