@@ -9,7 +9,7 @@ const Portfolio = () => {
 
             </div>
             <div className='mt-12'>
-                <p className='text-xl font-semibold pb-2 border-b-2 border-black'>Educational Background:</p>
+                <p className='text-xl font-bold pb-2 border-b-2 border-black'>Educational Background:</p>
                 <div className='mt-4'>
                     <div class="overflow-x-auto">
                         <table class="table table-zebra w-full text-center">
@@ -59,7 +59,7 @@ const Portfolio = () => {
             </div>
 
             <div className='mt-12'>
-                <p className='text-xl font-semibold pb-2 border-b-2 border-black mb-4'>Skills:</p>
+                <p className='text-xl font-bold pb-2 border-b-2 border-black mb-4'>Skills:</p>
                 <p><b>Expertise: </b> HTML5, CSS3, Bootstrap, Tailwind, JavaScript, ES6, React, Firebase.</p>
                 <p><b>Comfortable: </b> NodeJs, Mongodb, ExpressJs.</p>
                 <p><b>Familiar: </b>PHP, Material UI.</p>
@@ -67,7 +67,7 @@ const Portfolio = () => {
 
             </div>
             <div className='mt-12'>
-                <p className='text-xl font-semibold pb-2 border-b-2 border-black mb-4'>Projects:</p>
+                <p className='text-xl font-bold pb-2 border-b-2 border-black mb-4'>Projects:</p>
                 <div>
                     <p><b>Warehouse Management</b></p>
                     <p><b><li>Features:</li></b></p>
