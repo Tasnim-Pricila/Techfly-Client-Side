@@ -38,7 +38,7 @@ const ManageProducts = () => {
 
     return (
         <div>
-            <p className='text-2xl text-primary'>Manage Products</p>
+            <p className='text-xl font-bold text-primary mb-8'>Manage Products</p>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full text-center">
                     <thead>

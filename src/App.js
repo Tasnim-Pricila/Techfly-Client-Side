@@ -28,7 +28,6 @@ import useAdmin from './CustomHook/useAdmin';
 function App() {
   const [user, loading] = useAuthState(auth);
   const [admin] = useAdmin(user);
-  // console.log(user.email)
 
   if (loading) {
     <p>Loading...</p>
@@ -51,16 +50,8 @@ function App() {
         }></Route>
         <Route path='/*' element={<NotFound />}></Route>
 
-        <Route path='/dashboard' element={
+        <Route path='dashboard' element={
           <RequireAuth> <Dashboard /> </RequireAuth>}>
-          {/* {
-            !admin &&
-            <Route index element={<MyOrders />}> </Route>
-          }
-          {
-            admin &&
-            <Route index element={<ManageProducts />}> </Route>
-          } */}
           {
             admin &&
             <>

@@ -65,9 +65,9 @@ const AddProduct = () => {
     };
     return (
         <div>
-            <div className='mx-auto'>
-                <div>
-                    <p className='text-2xl my-12'>Add a Product</p>
+            <div className='mx-auto mb-12'>
+                
+                    <p className='text-xl font-bold text-primary mb-8'>Add a Product</p>
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
 
                         <input placeholder='Product Name' type="text" className='input input-bordered input-info w-full max-w-xs' {...register("title")} />
@@ -93,9 +93,9 @@ const AddProduct = () => {
                         <input type='file' placeholder='Upload Product Photo' {...register("image", { required: true, })} />
                         {errors.image?.type === 'required' && "Password is required"}
 
-                        <input type="submit" className="btn btn-info w-1/3" value='Add Product' />
+                        <input type="submit" className="btn btn-primary w-[320px]" value='Add Product' />
                     </form>
-                </div>
+               
             </div>
         </div>
     );

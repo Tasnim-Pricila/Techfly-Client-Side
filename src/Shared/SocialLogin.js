@@ -15,9 +15,9 @@ const SocialLogin = () => {
 
     useEffect(() => {
         if (token) {
-             navigate('/dashboard');
+            navigate('/dashboard');
         }
-    }, [ navigate, token])
+    }, [navigate, token])
 
     if (googleUser) {
         // console.log(googleUser);
@@ -25,15 +25,18 @@ const SocialLogin = () => {
     if (googleLoading) {
         return <p>Loading</p>
     }
-   
+
     return (
-        <div>
-            <div className='divider w-1/2'>OR</div>
-            <button className='btn btn-primary btn-outline w-1/2'  
-            onClick={() => signInWithGoogle()}>
-                <FontAwesomeIcon icon={faGoogle} className='pr-10'></FontAwesomeIcon>
-                 Sign In With Google   
-            </button>
+        <div className='flex flex-col items-center '>
+            <div className='divider md:w-[320px] self-center'>OR</div>
+            <div className='group'>
+                <button className='md:w-[320px] capitalize border-2 border-yellow-500 rounded-md py-2 font-semibold hover:bg-yellow-500 group-hover:text-white '
+                    onClick={() => signInWithGoogle()}>
+                    <FontAwesomeIcon icon={faGoogle} className='pr-10 text-orange-500 group-hover:text-white'></FontAwesomeIcon>
+                    Sign In With Google
+                </button>
+            </div>
+
         </div>
     );
 };

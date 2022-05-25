@@ -1,13 +1,11 @@
 import React from 'react';
-import team from '../../images/team.jpg';
 import about from '../../images/about.jpg'
 import { BriefcaseIcon, StarIcon, UserGroupIcon } from '@heroicons/react/solid';
 
 const About = () => {
     return (
         <div>
-            <div style={{ backgroundImage: `url('${team}')` }}
-                className='bg-no-repeat bg-cover bg-center bg-blend-overlay bg-[#24212115]
+            <div className='bg-no-repeat bg-cover bg-center bg-blend-overlay bg-[#24212115]
              text-black' >
                 <div className='w-1/2 mx-auto text-center flex flex-col justify-center h-full py-16'>
                     <p className='text-2xl uppercase tracking-wider text-slate-900'>Welcome To</p>

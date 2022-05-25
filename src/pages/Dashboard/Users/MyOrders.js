@@ -1,3 +1,5 @@
+import { faArrowRight, faArrowRightArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TrashIcon } from '@heroicons/react/solid';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -51,6 +53,7 @@ const MyOrders = () => {
 
     return (
         <div>
+            <p className='text-xl font-bold text-primary mb-8'>My Orders</p>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full text-center">
                     <thead>

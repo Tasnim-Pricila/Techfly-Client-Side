@@ -28,8 +28,7 @@ const EditProfile = () => {
             linkedIn,
             address
         }
-        // console.log(details)
-
+        
         fetch(`http://localhost:5000/user/${email}`, {
             method: 'PATCH',
             headers: {

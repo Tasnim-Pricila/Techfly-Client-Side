@@ -32,7 +32,7 @@ const Parts = () => {
                                     <p>Minimum Order Quantity: {part.minimumOrderQuantity}</p>
                                     <p>Available Quantity: {part.availableQuantity}</p>
                                     <div className="card-actions justify-end">
-                                        <button className="btn btn-primary" onClick={() => handlePurchase(part._id)}>Purchase</button>
+                                        <button className="btn btn-warning" onClick={() => handlePurchase(part._id)}>Purchase</button>
                                     </div>
                                 </div>
                             </div>
