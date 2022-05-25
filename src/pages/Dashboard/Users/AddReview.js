@@ -44,7 +44,7 @@ const AddReview = () => {
             <div className='mx-auto'>
                 <div>
                     <p className='text-xl font-bold text-primary mb-8'>Add a Review</p>
-                    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4  w-1/3'>
+                    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4  md:w-1/3'>
 
                         <input placeholder='Name' type="text" defaultValue={userName} disabled className='input input-bordered input-info w-full max-w-xs' {...register("name")} />
 

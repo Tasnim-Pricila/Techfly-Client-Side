@@ -58,7 +58,7 @@ const EditProfile = () => {
 
     return (
         <div>
-            <p>Edit Profile</p>
+            <p className='text-xl font-bold text-primary basis-1/2 mb-8'>Edit Profile</p>
             <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
 
                 <input placeholder='Name' type="text" className='input input-bordered input-info w-full max-w-xs' defaultValue={userName} {...register("name", { required: true })} />
@@ -83,7 +83,7 @@ const EditProfile = () => {
 
 
 
-                <input type="submit" className="btn btn-info w-1/3" value='Submit Review' />
+                <input type="submit" className="btn btn-primary w-[320px]" value='Update' />
             </form>
         </div>
     );

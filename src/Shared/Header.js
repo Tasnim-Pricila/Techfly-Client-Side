@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { MenuIcon, XIcon } from '@heroicons/react/solid';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { MenuAlt1Icon, MenuIcon, XIcon } from '@heroicons/react/solid';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import { signOut } from 'firebase/auth';
+import proofile from '../images/proofile.png'
 
 const Header = () => {
 
     const [menuIcon, setMenuIcon] = useState(false);
     const [user, loading] = useAuthState(auth);
+    const navigate = useNavigate();
+    const email = user?.email;
+    const userName = user?.displayName;
+    const image = user?.photoURL;
 
     const handleScroll = () => {
         window.scrollTo({
@@ -23,11 +28,22 @@ const Header = () => {
     }
     const logOut = () => {
         signOut(auth);
+        navigate('/');
+        handleScroll();
     }
 
     return (
         <div>
             <div className='flex justify-between items-center md:px-20 px-4 py-4 bg-[#1B1E1E] text-white sticky top-0 z-50'>
+                {
+                    user &&
+                    <div className='md:hidden'>
+                        <label for="dashboard-drawer" class="drawer-button">
+                            <MenuAlt1Icon className='w-6'></MenuAlt1Icon>
+                        </label>
+                    </div>
+                }
+
                 <div>
                     <Link to='/home' className='uppercase font-bold tracking-wider text-secondary text-xl'>TechFly</Link>
                 </div>
@@ -37,42 +53,38 @@ const Header = () => {
                 <div className={`flex md:flex-row md:gap-8 flex-col md:static duration-1000 absolute bg-[#333636] h-[100vh] md:h-auto md:bg-transparent text-center uppercase items-center gap-2 overflow-hidden
                 ${menuIcon ? 'right-0 left-0 top-14 py-4 gap-2' : 'right-0 left-[500px] top-14'} `}>
                     <NavLink to='/'
-                        className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
+                        className={({ isActive }) => (isActive ? "text-secondary pb-1 relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "pb-1")} onClick={handleScroll}>
                         Home
                     </NavLink>
                     <NavLink to='/blogs'
-                        className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
+                        className={({ isActive }) => (isActive ? "text-secondary pb-1 relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "pb-1")} onClick={handleScroll}>
                         Blogs
                     </NavLink>
                     <NavLink to='/portfolio'
-                        className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
+                        className={({ isActive }) => (isActive ? "text-secondary pb-1 relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "pb-1")} onClick={handleScroll}>
                         My Portfolio
                     </NavLink>
                     {
                         user &&
                         <NavLink to='/dashboard'
-                            className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
+                            className={({ isActive }) => (isActive ? "text-secondary pb-1 relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "pb-1")} onClick={handleScroll}>
                             Dashboard
                         </NavLink>
                     }
-
                     <NavLink to='/contact'
-                        className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
+                        className={({ isActive }) => (isActive ? "text-secondary pb-1 relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "pb-1")} onClick={handleScroll}>
                         Contact
-                    </NavLink>
+                    </NavLink> 
                     {
                         !user ?
                             <NavLink to='/login'
-                                className={({ isActive }) => (isActive ? "text-secondary pb-1 font-semibold relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "font-semibold pb-1")} onClick={handleScroll}>
+                                className={({ isActive }) => (isActive ? "text-secondary pb-1 relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "pb-1")} onClick={handleScroll}>
                                 Login
                             </NavLink>
                             :
                             <>
-                                <p className='bg-primary'>Welcome {user.displayName}</p>
-                                {/* <p className='bg-primary'>{user.email}</p> */}
                                 <button className='btn btn-secondary' onClick={logOut}>Logout</button>
                             </>
-
                     }
                 </div>
             </div>

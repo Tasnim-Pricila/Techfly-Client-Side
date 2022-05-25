@@ -18,8 +18,8 @@ const Parts = () => {
 
     return (
         <>
-            <p className='text-2xl text-center font-semibold my-12'>Parts</p>
-            <div className='px-24 mb-12 grid grid-cols-3 gap-8'>
+            <p className='text-3xl text-center font-semibold mb-12 mt-20 uppercase text-secondary'>Parts</p>
+            <div className='md:px-24 px-4 mb-12 grid md:grid-cols-3 grid-cols-1 gap-8'>
                 {
                     parts.slice(0, 6).reverse().map(part =>
                         <div key={part._id} >
@@ -27,8 +27,8 @@ const Parts = () => {
                                 <figure><img src={part.image} alt="Shoes" className='h-[300px] rounded-lg w-full object-cover' /></figure>
                                 <div className="card-body">
                                     <h2 className="card-title">{part.title}</h2>
-                                    <p className='h-48'>{part.description}</p>
-                                    <p>$ {part.price}</p>
+                                    <p className='h-28'>{part.description.slice(0,150)}</p>
+                                    <p className='text-2xl font-bold'>$ {part.price}</p>
                                     <p>Minimum Order Quantity: {part.minimumOrderQuantity}</p>
                                     <p>Available Quantity: {part.availableQuantity}</p>
                                     <div className="card-actions justify-end">

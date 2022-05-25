@@ -1,13 +1,8 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from '../../firebase.init';
 
-const PurchaseModal = ({part, quantity, refetch, setModalData}) => {
-    const [user, loading] = useAuthState(auth);
-    const email = user?.email;
-    const userName = user?.displayName;
+const PurchaseModal = ({part, quantity, refetch, setModalData, email, userName}) => {
+   
     const {title, price} = part;
-
     const handleSubmit = e => {
         e.preventDefault();
         const purchase = {
@@ -62,7 +57,7 @@ const PurchaseModal = ({part, quantity, refetch, setModalData}) => {
                         <input type="text" name='phone' placeholder="Your Phone" className="input input-bordered input-primary w-full max-w-xs mb-4" />
                         <input type="textarea" name='address' placeholder="Address" className="input input-bordered input-primary w-full max-w-xs mb-4" />
 
-                        <input type="submit" value="Purchase Now" className="btn btn-primary w-full max-w-xs mb-4" />
+                        <input type="submit" value="Confirm Order" className="btn btn-primary w-full max-w-xs mb-4" />
                     </form>
 
                 </div>

@@ -68,7 +68,7 @@ const Signup = () => {
     return (
         <div>
             <div className='h-screen'>
-                <div className='w-1/4 mx-auto py-16 rounded-lg mt-4 shadow-xl'>
+                <div className='md:w-1/4 mx-auto py-16 rounded-lg mt-4 shadow-xl'>
                     <p className='text-2xl mb-8 uppercase font-bold text-center'>Signup</p>
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
 

@@ -5,9 +5,9 @@ import summary from '../../images/summary.jpg'
 const BusinessSummary = () => {
     return (
         <div style={{ backgroundImage: `url('${summary}')`}} className='bg-no-repeat bg-cover bg-center'>
-            <div className='px-20 py-12'>
-                <p className='text-3xl font-bold text-center w-1/2 mx-auto'>Our professional team works to increase productivity and cost effectiveness on the market</p>
-                <div className='grid grid-cols-4 gap-12 mt-16'>
+            <div className='md:px-20 py-12'>
+                <p className='text-3xl font-bold text-center md:w-1/2 mx-auto'>Our professional team works to increase productivity and cost effectiveness on the market</p>
+                <div className='grid md:grid-cols-4 grid-cols-1 gap-12 mt-16'>
                     <div className='flex flex-col items-center'>
                         <UserGroupIcon className='w-12 mb-4 Techfly'></UserGroupIcon>
                         <p className='font-bold text-5xl text-yellow-500'>250+</p>

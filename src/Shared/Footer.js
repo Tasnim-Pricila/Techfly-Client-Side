@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <div className='bg-slate-200'>
-            <div className='grid md:grid-cols-4 grid-cols-1 py-20 px-28 gap-8 justify-center'>
-                <div className='justify-self-cente'>
+            <div className='grid md:grid-cols-4 grid-cols-1 py-20 md:px-28  gap-8 justify-center'>
+                <div className='justify-self-center md:justify-self-auto'>
                     <p className='uppercase text-secondary  font-bold'>
                         <span className='text-xl'>  &copy; 2022 TechFly </span> <br />
                     All Rights Reserved</p>
@@ -44,7 +44,7 @@ const Footer = () => {
                         <Link to='/' className='hover:text-primary'> Our Customers </Link>
                     </div>
                 </div>
-                <div className='justify-self-end'>
+                <div className='md:justify-self-end justify-self-center'>
                     <p className='text-slate-800 text-xl font-semibold'>Production</p>
                     <div className='pt-6 flex flex-col gap-4 text-slate-700'>
                         <Link to='/' className='hover:text-primary'> Addresses of factories </Link>

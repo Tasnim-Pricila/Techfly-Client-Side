@@ -2,7 +2,7 @@ import React from 'react';
 
 const Portfolio = () => {
     return (
-        <div className='my-12 px-20'>
+        <div className='my-12 md:px-20 px-4'>
             <div className='text-center'>
                 <p className='text-3xl font-bold'>Tasnim Tanzim Pricila</p>
                 <p className='font-semibold'>Email: tasnimtanzim55@gmail.com</p>
@@ -30,7 +30,7 @@ const Portfolio = () => {
                                     <td>Southeast University</td>
                                     <td>3.83</td>
                                     <td>4.00</td>
-                                    <td>Computer Science & Engineering </td>
+                                    <td>Computer Science &amp; Engineering </td>
                                     <td>2021</td>
                                 </tr>
 

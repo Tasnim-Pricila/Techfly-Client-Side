@@ -31,7 +31,7 @@ const MakeAdmin = () => {
     }
     return (
         <div>
-            <p className='text-xl font-bold text-primary mb-8'>Make Admin </p>
+            <p className='text-xl font-bold text-primary mb-8'> Make Admin </p>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table table-zebra w-full text-center">

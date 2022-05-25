@@ -2,7 +2,7 @@ import React from 'react';
 
 const Blogs = () => {
     return (
-        <div className='flex flex-col gap-6 my-12 px-20'>
+        <div className='flex flex-col gap-6 my-12 md:px-20 px-4'>
             <div className='border-4 py-2 px-4'>
                 <p className='text-xl text-primary font-semibold mb-2'>How will you improve the performance of a React Application?</p>
                 <div>
@@ -40,8 +40,8 @@ const Blogs = () => {
                 <p className='text-xl text-primary font-semibold mb-2'>
                     14.5 You have an array of products. Each product has a name, price, description, etc. How will you implement a search to find products by name
                 </p>
-                {/* <script>
-                    const myArray = [
+                
+                    {`const myArray = [
                         {
                             productName:'productA',
                             price: 500, 
@@ -59,8 +59,8 @@ const Blogs = () => {
                         }  
                     ]
                     const search = myArray.filter(a => a.productName == a.productName.match('productB'));
-                    console.log(search);
-                </script> */}
+                    console.log(search);`}
+                
             </div>
 
             <div className='border-4 py-2 px-4'>

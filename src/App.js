@@ -24,6 +24,7 @@ import Payment from './pages/Dashboard/Users/Payment';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './firebase.init';
 import useAdmin from './CustomHook/useAdmin';
+import RequireAdmin from './pages/RequireAdmin';
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -44,9 +45,7 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<Signup />}></Route>
         <Route path='/purchase/:id' element={
-          <RequireAuth>
-            <PurchaseParts />
-          </RequireAuth>
+          <RequireAuth> <PurchaseParts /> </RequireAuth>
         }></Route>
         <Route path='/*' element={<NotFound />}></Route>
 
@@ -54,13 +53,21 @@ function App() {
           <RequireAuth> <Dashboard /> </RequireAuth>}>
           {
             admin &&
-            <>
-              <Route index element={<ManageProducts />}> </Route>
-              <Route path='manageOrders' element={<ManageOrder />}> </Route>
-              <Route path='addProduct' element={<AddProduct />}> </Route>
-              <Route path='makeAdmin' element={<MakeAdmin />}> </Route>
-            </>
+              <Route index element={
+              <RequireAdmin><ManageProducts /></RequireAdmin>
+              }> </Route>
           }
+              <Route path='manageOrders' element={
+              <RequireAdmin><ManageOrder /> </RequireAdmin>
+              }> </Route>
+
+              <Route path='addProduct' element={
+              <RequireAdmin> <AddProduct /> </RequireAdmin>
+              }> </Route>
+              <Route path='makeAdmin' element={
+              <RequireAdmin> <MakeAdmin /> </RequireAdmin> 
+              }> </Route>
+            
           {
             !admin &&
             <>

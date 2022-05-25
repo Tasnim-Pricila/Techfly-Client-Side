@@ -9,7 +9,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
-     // Handle Signin Error 
+
      const [error, setError] = useState({
         email: "",
         password: "",
@@ -58,7 +58,7 @@ const Login = () => {
     return (
         <div className='h-screen'>
             <div className='h-full'>
-                <div className='w-1/4 mx-auto py-20 rounded-lg my-20 shadow-xl'>
+                <div className='md:w-1/4 mx-auto py-20 rounded-lg my-20 shadow-xl'>
                     <p className='text-2xl mb-8 uppercase font-bold text-center'>Login</p>
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4 '>
                         <input placeholder='Email' type="email" className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' {...register("email", { required: true })} />

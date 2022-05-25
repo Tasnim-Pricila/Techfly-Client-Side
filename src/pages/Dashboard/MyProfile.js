@@ -65,11 +65,20 @@ const MyProfile = () => {
         navigate(`/dashboard/editProfile/${email}`);
     }
     return (
-        <div className='w-1/2 border-4 border-purple-400 py-6 px-8 rounded-lg mb-12' >
+        <div className='md:w-1/2 border-4 border-purple-400 py-6 px-8 rounded-lg mb-12' >
             <div >
                 <div className='flex justify-between border-b-2 border-slate-700 pb-2 items-center mb-6'>
-                    <p className='text-xl font-bold text-primary basis-1/2'>My Profile</p>
-                    <FontAwesomeIcon icon={faEdit} className='text-right w-full cursor-pointer basis-1/2 text-primary' onClick={handleEdit}></FontAwesomeIcon>
+                    <p className='text-xl font-bold text-primary basis-1/2 '>My Profile</p>
+                    <div className='flex items-centerbasis-1/2 justify-end'>
+                        <button className='flex btn btn-primary btn-outline group pt-1 btn-sm'>Edit
+                            <FontAwesomeIcon icon={faEdit} className='text-primary pl-4 group-hover:text-white' onClick={handleEdit}></FontAwesomeIcon>
+                        </button>
+                        
+
+                    </div>
+
+
+
                 </div>
 
                 <div className='flex flex-col gap-2 justify-center items-center'>
@@ -102,7 +111,7 @@ const MyProfile = () => {
                     !hide &&
                     <button className='text-xl font-bold text-primary mb-8 mt-8 border-slate-700 border px-4 py-2 rounded' onClick={() => setShow(!show)}>Add More Information</button>
                 }
-                
+
                 {show &&
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
                         <input placeholder='Phone' type="text" className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("phone", { required: true })} />
@@ -124,7 +133,7 @@ const MyProfile = () => {
                         <textarea placeholder='Write Your Address Here...' className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("address", { required: true })} />
                         {errors.address?.type === 'required' && "address is required"}
 
-                        <input type="submit" className="btn btn-primary w-[320px]" value='Submit'/>
+                        <input type="submit" className="btn btn-primary w-[320px]" value='Submit' />
                     </form>
                 }
 
