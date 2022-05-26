@@ -8,7 +8,7 @@ const PurchaseParts = () => {
     const { id } = useParams();
 
     const { data: part, isLoading, refetch } = useQuery(['part', id], () =>
-        fetch(`http://localhost:5000/parts/${id}`, {
+        fetch(`https://vast-fjord-23349.herokuapp.com/parts/${id}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

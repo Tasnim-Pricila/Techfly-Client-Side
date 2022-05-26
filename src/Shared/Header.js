@@ -5,6 +5,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import { signOut } from 'firebase/auth';
 import Loading from './Loading';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
 
@@ -80,7 +82,8 @@ const Header = () => {
                             </NavLink>
                             :
                             <>
-                                <button className='btn btn-secondary' onClick={logOut}>Logout</button>
+                                <button className='btn btn-secondary' onClick={logOut}>Logout
+                                <FontAwesomeIcon icon={faSignOutAlt} className='pl-2'></FontAwesomeIcon> </button>
                             </>
                     }
                 </div>

@@ -17,10 +17,13 @@ const MyProfile = () => {
     const image = user?.photoURL;
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
-    const [hide, setHide] = useState(false);
 
     const { data: userInfo, isLoading, refetch } = useQuery(['userInfo', email], () =>
-        fetch(`http://localhost:5000/user/${email}`, {
+        fetch(`https://vast-fjord-23349.herokuapp.com/user/${email}`, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json()))
 
@@ -36,7 +39,7 @@ const MyProfile = () => {
             address
         }
 
-        fetch(`http://localhost:5000/user/${email}`, {
+        fetch(`https://vast-fjord-23349.herokuapp.com/user/${email}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -55,7 +58,6 @@ const MyProfile = () => {
                     refetch();
                     reset();
                     setShow(!show);
-                    setHide(true);
                 }
                 else {
                     toast.error('Something Went Wrong', {
@@ -71,6 +73,7 @@ const MyProfile = () => {
     const handleEdit = () => {
         navigate(`/dashboard/editProfile/${email}`);
     }
+
     return (
         <div className='md:w-1/2 border-4 border-purple-400 py-6 px-8 rounded-lg mb-12' >
             <div >
@@ -110,47 +113,48 @@ const MyProfile = () => {
             </div>
             <div className='mb-8 flex flex-col items-center'>
                 {
-                    !hide &&
+
+                    userInfo[0].education ? '' :
+
                     <button className='text-xl font-bold text-primary mb-8 mt-8 border-slate-700 border px-4 py-2 rounded' onClick={() => setShow(!show)}>Add More Information</button>
                 }
 
                 {show &&
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
-                        <input placeholder='Phone' type="text" className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("phone", { required: true })} />
-                        <small className='text-error font-semibold px-10'>
-                            {errors.phone?.type === 'required' && "phone is required"}
-                        </small>
+                        {
+                            userInfo[0].phone ? '' :
+                            <>
+                                <input placeholder='Phone' type="text" className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("phone", { required: true })} />
+                                <small className='text-error font-semibold px-10'>
+                                    {errors.phone?.type === 'required' && "Phone is required"}
+                                </small>
 
+                                <input placeholder='Education' type="text" className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("education", { required: true })} />
+                                <small className='text-error font-semibold px-10'>
+                                    {errors.education?.type === 'required' && "education is required"}
+                                </small>
 
-                        <input placeholder='Education' type="text" className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("education", { required: true })} />
-                        <small className='text-error font-semibold px-10'>
-                            {errors.education?.type === 'required' && "education is required"}
-                        </small>
+                                <input type="text" placeholder='City' className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("city", { required: true })} />
+                                <small className='text-error font-semibold px-10'>
+                                    {errors.city?.type === 'required' && "City is required"}
+                                </small>
 
-                        <input placeholder='City' type="text" className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("city", { required: true })} />
-                        <small className='text-error font-semibold px-10'>
-                            {errors.city?.type === 'required' && "city is required"}
-                        </small>
+                                <input type="text" placeholder='District' className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("district", { required: true })} />
+                                <small className='text-error font-semibold px-10'>
+                                    {errors.district?.type === 'required' && "district is required"}
+                                </small>
 
-                        <input type="text" placeholder='District' className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("district", { required: true })} />
-                        <small className='text-error font-semibold px-10'>
-                            {errors.district?.type === 'required' && "district is required"}
-                        </small>
+                                <input type='url' placeholder='linkedIn Profile Link' className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("linkedIn",  {  required: true })} />
+                                <small className='text-error font-semibold px-10'>
+                                    {errors.linkedIn?.type === 'required' && "linkedIn is required"}
+                                </small>
 
-
-                        <input type='url' placeholder='linkedIn Profile Link' className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("linkedIn", { required: true })} />
-                        <small className='text-error font-semibold px-10'>
-                            {errors.linkedIn?.type === 'required' && "linkedIn is required"}
-                        </small>
-
-
-
-                        <textarea placeholder='Write Your Address Here...' className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("address", { required: true })} />
-                        <small className='text-error font-semibold px-10'>
-                            {errors.address?.type === 'required' && "address is required"}
-                        </small>
-
-
+                                <textarea placeholder='Write Your Address Here...' className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("address", { required: true })} />
+                                <small className='text-error font-semibold px-10'>
+                                    {errors.address?.type === 'required' && "address is required"}
+                                </small>
+                            </>
+                        }       
                         <input type="submit" className="btn btn-primary w-[320px]" value='Submit' />
                     </form>
                 }

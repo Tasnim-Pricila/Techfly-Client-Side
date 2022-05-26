@@ -22,16 +22,6 @@ const Reviews = () => {
         autoplay: true,
         responsive: [
             {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true,
-                padding: "50px"
-              }
-            },
-            {
               breakpoint: 600,
               settings: {
                 slidesToShow: 1,
@@ -44,7 +34,7 @@ const Reviews = () => {
     };
 
     const { data: reviews, isLoading } = useQuery('reviews', () =>
-        fetch(`http://localhost:5000/reviews`)
+        fetch(`https://vast-fjord-23349.herokuapp.com/reviews`)
             .then(res => res.json())
     )
 

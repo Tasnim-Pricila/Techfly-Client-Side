@@ -17,7 +17,7 @@ const MyOrders = () => {
     const [deletingOrder, setDeletingOrder] = useState(null);
 
     const { data: orders, isLoading, refetch } = useQuery(['orders', email], () =>
-        fetch(`http://localhost:5000/purchase?email=${email}`, {
+        fetch(`https://vast-fjord-23349.herokuapp.com/purchase?email=${email}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -34,7 +34,7 @@ const MyOrders = () => {
     }
 
     const handleDelete = async (id) => {
-        fetch(`http://localhost:5000/purchase/${id}`, {
+        fetch(`https://vast-fjord-23349.herokuapp.com/purchase/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

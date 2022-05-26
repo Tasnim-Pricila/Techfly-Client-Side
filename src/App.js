@@ -35,7 +35,7 @@ function App() {
     <p>Loading...</p>
   }
   return (
-    <div className="App">
+    <div className="App leading-7">
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home />}></Route>

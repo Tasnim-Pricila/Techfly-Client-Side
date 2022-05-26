@@ -6,7 +6,7 @@ import Loading from '../../Shared/Loading';
 const Parts = () => {
     const navigate = useNavigate();
     const { data: parts, isLoading } = useQuery('parts', () =>
-        fetch(`http://localhost:5000/parts`)
+        fetch(`https://vast-fjord-23349.herokuapp.com/parts`)
             .then(res => res.json())
 
     )
@@ -15,11 +15,15 @@ const Parts = () => {
     }
     const handlePurchase = (id) => {
         navigate(`/purchase/${id}`);
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     }
 
     return (
         <>
-            <p className='text-3xl text-center font-semibold mb-12 mt-20 uppercase text-secondary'>Parts</p>
+            <p className='text-3xl text-center font-semibold mb-12 mt-20 uppercase text-secondary' id='parts'>Parts</p>
             <div className='md:px-24 px-4 mb-12 grid md:grid-cols-3 grid-cols-1 gap-8'>
                 {
                     parts.slice(-6).reverse().map(part =>

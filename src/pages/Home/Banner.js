@@ -50,7 +50,7 @@ const Banner = () => {
                                     <p className='font-bold md:text-8xl text-6xl text-yellow-500 uppercase'>{banner.title}</p>
                                     <p className='md:text-8xl text-4xl font-light'>{banner.title1}</p>
                                     <p className='md:text-3xl text-xl py-6 italic font-thin text-center'>{banner.description}</p>
-                                    <button className='text-white px-8 py-4 border-2 rounded-lg border-yellow-500 font-semibold uppercase hover:bg-yellow-500 hover:duration-700 mt-4'>Go To Shop</button>
+                                    <a href='#parts' className='text-white px-8 py-4 border-2 rounded-lg border-yellow-500 font-semibold uppercase hover:bg-yellow-500 hover:duration-700 mt-4'>Go To Shop</a>
                                 </div>
                             </div>
                         </div>

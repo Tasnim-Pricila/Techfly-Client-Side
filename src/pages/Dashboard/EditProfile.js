@@ -14,7 +14,11 @@ const EditProfile = () => {
     const navigate = useNavigate();
 
     const { data: userInfo, isLoading, refetch } = useQuery(['userInfo', email], () =>
-        fetch(`http://localhost:5000/user/${email}`, {
+        fetch(`https://vast-fjord-23349.herokuapp.com/user/${email}`, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json()))
 
@@ -32,7 +36,7 @@ const EditProfile = () => {
             address
         }
 
-        fetch(`http://localhost:5000/user/${email}`, {
+        fetch(`https://vast-fjord-23349.herokuapp.com/user/${email}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

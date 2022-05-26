@@ -19,7 +19,7 @@ const AddReview = () => {
             reviewedBy: userName, 
             email, 
         } 
-        fetch('http://localhost:5000/review',{
+        fetch('https://vast-fjord-23349.herokuapp.com/review',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

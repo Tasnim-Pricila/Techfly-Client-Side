@@ -60,6 +60,8 @@ const Blogs = () => {
                     ]
                     const search = myArray.filter(a => a.productName == a.productName.match('productB'));
                     console.log(search);`}
+                    <p className='text-primary pt-4'>Explanation:</p>
+                    At first, I will pass a filter() method through the array of products.The filter() method creates a new array with all elements that pass the test implemented by the provided function. Inside the function I will match a string with the product name. If the match() method matches, it will return an array and null if no matches found. That's how I will  implement a search to find products by name.
                 
             </div>
 

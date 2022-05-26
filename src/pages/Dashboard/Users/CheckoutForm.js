@@ -12,7 +12,7 @@ const CheckoutForm = ({ orders }) => {
     const { price, purchasedBy, productName, email, _id } = orders;
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://vast-fjord-23349.herokuapp.com/create-payment-intent", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -68,7 +68,7 @@ const CheckoutForm = ({ orders }) => {
                         status: 'Pending'
                     }
 
-                    fetch(`http://localhost:5000/purchase/${_id}`, {
+                    fetch(`https://vast-fjord-23349.herokuapp.com/purchase/${_id}`, {
                         method: 'PATCH',
                         headers: {
                             'content-type': 'application/json',

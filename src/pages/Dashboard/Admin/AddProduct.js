@@ -41,7 +41,7 @@ const AddProduct = () => {
                     }
 
                     // Post to database 
-                    fetch(`http://localhost:5000/parts`, {
+                    fetch(`https://vast-fjord-23349.herokuapp.com/parts`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

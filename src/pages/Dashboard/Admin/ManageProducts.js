@@ -10,7 +10,7 @@ const ManageProducts = () => {
     const [deletingProduct, setDeletingProduct] = useState(null);
 
     const { data: products, isLoading, refetch } = useQuery('products', () =>
-        fetch('http://localhost:5000/parts', {
+        fetch('https://vast-fjord-23349.herokuapp.com/parts', {
         })
             .then(res => res.json()))
 
@@ -19,7 +19,7 @@ const ManageProducts = () => {
     }
 
     const handleDelete = async (id) => {
-        fetch(`http://localhost:5000/parts/${id}`, {
+        fetch(`https://vast-fjord-23349.herokuapp.com/parts/${id}`, {
             method: 'DELETE',
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

@@ -10,7 +10,7 @@ const About = () => {
                 <div className='md:w-1/2 mx-auto text-center flex flex-col justify-center h-full py-16'>
                     <p className='text-2xl uppercase tracking-wider text-slate-900'>Welcome To</p>
                     <p className='text-5xl uppercase tracking-widest font-bold text-secondary'>Techfly</p>
-                    <p className='mx-auto my-10 text-2xl md:px-24 px-6 text-slate-800 font-[400] italic'>Our product portfolio is comprised of the most trusted brands and we offering the finest customer service. We offer top quality products at reasonable prices, provide unparalleled technical assistance, and back it all up with outstanding customer support.</p>
+                    <p className='mx-auto my-10 text-2xl md:px-24 px-6 text-slate-800 font-thin '>Our product portfolio is comprised of the most trusted brands and we offering the finest customer service. We offer top quality products at reasonable prices, provide unparalleled technical assistance, and back it all up with outstanding customer support.</p>
                     <button className='btn btn-secondary btn-outline md:w-1/6 mx-auto '>About Us</button>
                 </div>
             </div>
@@ -22,7 +22,7 @@ const About = () => {
                         <p className='uppercase text-2xl mb-12 leading-10'>About <br />
                             <span className='font-bold text-5xl tracking-wider text-secondary'>Techfly</span>
                         </p>
-                        <p className='text-2xl md:pr-32'>
+                        <p className='text-xl md:pr-32 leading-10'>
                             <span className='italic font-bold'>TechFly</span> helps manufacturers maximize the productivity they gain from their pneumatic tools, diaphragm pumps, chain hoists and related supplies. We dedicated to helping our customers andreduce operating costs.
                         </p>
                     </div>

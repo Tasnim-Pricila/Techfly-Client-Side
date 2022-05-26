@@ -27,7 +27,7 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
             setError(`You must be order at least ${minQty} products `)
         }
         else if (quantity > availableQty) {
-            setError(`You must not order more than ${availableQty} products `)
+            setError(`You can not order more than ${availableQty} products `)
         }
         else if( quantity <= availableQty  || quantity >= minQty ){
             setError('');
@@ -45,7 +45,7 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
             address: e.target.address.value,
             phone: e.target.phone.value,
         }
-        fetch('http://localhost:5000/purchase', {
+        fetch('https://vast-fjord-23349.herokuapp.com/purchase', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -107,18 +107,18 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
                         {error}
                     </small>
 
-                    <input type="text" name='title' defaultValue={title} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' />
+                    <input type="text" name='title' defaultValue={title} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required />
 
-                    <input type="number" name='price' defaultValue={price} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' />
+                    <input type="number" name='price' defaultValue={price} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required/>
 
-                    <input type="text" name='username' defaultValue={userName} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent'  />
+                    <input type="text" name='username' defaultValue={userName} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required />
 
-                    <input type="email" name='email' defaultValue={email} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' />
+                    <input type="email" name='email' defaultValue={email} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required/>
 
-                    <input type="number" name='phone' placeholder='Phone' className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent'  />
+                    <input type="number" name='phone' placeholder='Phone' className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required />
                    
 
-                    <input type="text" name='address' placeholder='Address' className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent'  />
+                    <input type="text" name='address' placeholder='Address' className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required />
                     
 
                     <input type="submit" className="btn btn-warning w-[320px] self-center" value='Purchase' disabled={quantity < minQty || quantity > availableQty} />
