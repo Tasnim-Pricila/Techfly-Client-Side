@@ -98,9 +98,9 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
                     </div>
                 </div>
             </div>
-            <div className='w-1/3 mx-auto border-4 my-8'>
+            <div className='md:w-1/3 mx-auto border-4 my-8'>
                 <form onSubmit={handleSubmit} className='flex flex-col gap-4 my-8 '>
-                    <label htmlFor="Quantity" className='font-semibold pl-24'>Quantity</label>
+                    <label htmlFor="Quantity" className='font-semibold md:pl-24 pl-8'>Quantity</label>
                     <input placeholder='quantity' name='quantity' type="number" defaultValue={minQty} className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' onKeyUp={handleQuantity} required
                          />
                     <small className='text-center text-error font-bold'>

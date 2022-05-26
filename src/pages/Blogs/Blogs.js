@@ -45,17 +45,17 @@ const Blogs = () => {
                         {
                             productName:'productA',
                             price: 500, 
-                            description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, ad. '
+                            description: 'This is Product A. '
                         },
                         {
                             productName: 'productB',
                             price: 1500, 
-                            description:' Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, ad. '
+                            description:'This is Product B. '
                         },
                         {
                             productName: 'productC',
                             price: 2500, 
-                            description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, ad. '
+                            description: 'This is Product C. '
                         }  
                     ]
                     const search = myArray.filter(a => a.productName == a.productName.match('productB'));
