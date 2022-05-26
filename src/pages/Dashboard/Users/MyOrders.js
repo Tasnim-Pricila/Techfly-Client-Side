@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import DeleteMyOrder from './DeleteMyOrder';
 
@@ -42,11 +43,18 @@ const MyOrders = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged === true) {
+                    toast.success('Order Deleted Successfully', {
+                        theme: 'colored',
+                        delay: 0,
+                    });
                     setDeletingOrder(null);
                     refetch();
                 }
                 else {
-                    console.log(data);
+                    toast.error('Something Went Wrong', {
+                        theme: 'colored',
+                        delay: 0,
+                    });
                 }
             })
     }

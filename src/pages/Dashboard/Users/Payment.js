@@ -5,12 +5,12 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from './CheckoutForm';
 
-const stripePromise=loadStripe('pk_test_51L2D2EKZuhtVgyM7S2CeyD5YrpaY7x1Ab3pNWv4hqTyRbvblNQ2KZhgUz71r0JbCZCytaYDey0oYNYlZ1t3QNseW00ZewuwFk9');
+const stripePromise = loadStripe('pk_test_51L2D2EKZuhtVgyM7S2CeyD5YrpaY7x1Ab3pNWv4hqTyRbvblNQ2KZhgUz71r0JbCZCytaYDey0oYNYlZ1t3QNseW00ZewuwFk9');
 
 const Payment = () => {
     const { id } = useParams();
     console.log(id);
-    const url =(`http://localhost:5000/purchase/${id}`);
+    const url = (`http://localhost:5000/purchase/${id}`);
     console.log(url);
 
     const { data: orders, isLoading, refetch } = useQuery(['orders', id], () =>
@@ -25,26 +25,25 @@ const Payment = () => {
     if (isLoading) {
         return <p>Loading...</p>
     }
-    console.log(orders);
 
     return (
         <>
-            <div className="card w-96 bg-base-100 shadow-xl">
-                <div className="card-body">
-                    <h2 className="card-title">Payment for {orders.productName} </h2>
-                    <p> Pay $ {orders.price} </p>
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
-                    </div>
+        <div className='md:w-1/2 mt-12'>
+            <div className="shadow-xl mr-2">
+                <div className="card-body border-2 rounded-lg border-purple-400">
+                    <h2 className="card-title">Payment for <span className='text-secondary'> {orders.productName} </span> </h2>
+                    <p className='pt-8 font-bold'> Pay: <span className='text-primary font-semibold text-xl'> ${orders.price}</span>   </p>
                 </div>
             </div>
-            <div className="card w-96 bg-base-100 shadow-xl mt-12">
-                <div className="card-body">
+            <div className="shadow-xl mt-12 mr-2">
+                <div className="card-body border-2 rounded-lg border-purple-400">
                     <Elements stripe={stripePromise}>
                         <CheckoutForm orders={orders} />
                     </Elements>
                 </div>
             </div>
+        </div>
+
         </>
     );
 };

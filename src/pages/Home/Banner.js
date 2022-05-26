@@ -13,7 +13,7 @@ const Banner = () => {
     };
 
     // Banner Array
-    const carsBanner = [
+    const banners = [
         {
             image: 'https://i.ibb.co/NLwYvWJ/banner-1.jpg',
             smallTitle: 'Techfly MANUFACTURING',
@@ -41,7 +41,7 @@ const Banner = () => {
            {/* Banner Section  */}
            <Slider {...settings} className='max-w-full overflow-hidden'>
                 {
-                    carsBanner.map ((banner, index) =>
+                    banners.map ((banner, index) =>
                         <div key={index}>
                             <div style={{ backgroundImage: `url('${banner.image}')` }} className='bg-cover h-[90vh] bg-no-repeat bg-blend-overlay 
                             bg-[#0000009b] bg-center object-cover'>

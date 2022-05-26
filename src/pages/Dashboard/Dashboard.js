@@ -18,7 +18,7 @@ const Dashboard = () => {
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content md:ml-12 ml-4">
                     <p className='text-2xl font-bold my-4'>
-                        Welcome Back, {user?.displayName.split(' ')[0]}
+                        Welcome Back, <span className='text-primary'> {user?.displayName.split(' ')[0]}</span>
                     </p>
                     <Outlet></Outlet>
                 </div>

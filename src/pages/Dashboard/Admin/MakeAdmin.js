@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 
 const MakeAdmin = () => {
     // GEt USers 
@@ -25,8 +26,13 @@ const MakeAdmin = () => {
         })
             .then(res => res.json())
             .then(data => {
-                refetch();
-                console.log(data);
+                if (data.modifiedCount > 0) {
+                    toast.success('User Added as Admin Successfully', {
+                        theme: 'colored',
+                        delay: 0,
+                    });
+                    refetch();
+                }
             })
     }
     return (
@@ -50,11 +56,11 @@ const MakeAdmin = () => {
                                         <td className='font-semibold text-secondary'> {user.email} </td>
                                         <td>
                                             {
-                                                user.role!=='admin' &&
+                                                user.role !== 'admin' &&
                                                 <button className='btn btn-success' onClick={() => makeAdmin(user.email)}>Make Admin</button>
                                             }
-                                            
-                                        </td>  
+
+                                        </td>
                                     </tr>
                                 )
                             }

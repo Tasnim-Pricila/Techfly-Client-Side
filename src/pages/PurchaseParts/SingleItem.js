@@ -28,8 +28,8 @@ const SingleItem = ({ part, setModalData, minQuantity, modalData, refetch }) => 
 
     return (
         <div>
-            <div className='h-screen'>
-                <div className="card lg:card-side shadow-xl mx-20 mt-28 px-20">
+            <div className='min-h-screen'>
+                <div className="card lg:card-side shadow-xl md:mx-20 mt-28 md:px-20">
                     <figure><img src={image} alt="Album" className='w-52' /></figure>
                     <div className="card-body">
                         <h2 className="card-title text-2xl">{title}</h2>

@@ -5,6 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const MyProfile = () => {
@@ -47,14 +48,20 @@ const MyProfile = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    console.log(data);
+                    toast.success('Info Added Successfully', {
+                        theme: 'colored',
+                        delay: 0,
+                    });
                     refetch();
                     reset();
                     setShow(!show);
                     setHide(true);
                 }
                 else {
-                    console.log(data);
+                    toast.error('Something Went Wrong', {
+                        theme: 'colored',
+                        delay: 0,
+                    });
                 }
             })
     }

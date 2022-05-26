@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 
 const AddProduct = () => {
@@ -52,11 +53,17 @@ const AddProduct = () => {
                         .then(res => res.json())
                         .then(insertedData => {
                             if (insertedData.acknowledged === true) {
-                                console.log(insertedData);
+                                toast.success('Product Deleted Successfully', {
+                                    theme: 'colored',
+                                    delay: 0,
+                                });
                                 reset();
                             }
                             else {
-                                console.log(insertedData);
+                                toast.error('Something Went Wrong', {
+                                    theme: 'colored',
+                                    delay: 0,
+                                });
                             }
                         })
                 }

@@ -3,6 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const EditProfile = () => {
@@ -28,7 +29,7 @@ const EditProfile = () => {
             linkedIn,
             address
         }
-        
+
         fetch(`http://localhost:5000/user/${email}`, {
             method: 'PATCH',
             headers: {
@@ -41,12 +42,18 @@ const EditProfile = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    console.log(data);
+                    toast.success('User Updated Successfully', {
+                        theme: 'colored',
+                        delay: 0,
+                    });
                     refetch();
-                    // reset();
+                    reset();
                 }
                 else {
-                    console.log(data);
+                    toast.error('Something Went Wrong', {
+                        theme: 'colored',
+                        delay: 0,
+                    });
                 }
             })
     }
@@ -54,7 +61,7 @@ const EditProfile = () => {
         return <p>Loading...</p>
     }
 
-    const { phone, city, district, address, linkedIn, education,  } = userInfo[0];
+    const { phone, city, district, address, linkedIn, education, } = userInfo[0];
 
     return (
         <div>
@@ -69,7 +76,7 @@ const EditProfile = () => {
                 <input placeholder='Education' type="text" className='input input-bordered input-info w-full max-w-xs' defaultValue={education} {...register("education", { required: true })} />
 
 
-                <input placeholder='City' type="text" className='input input-bordered input-info w-full max-w-xs'defaultValue={city} {...register("city", { required: true })} />
+                <input placeholder='City' type="text" className='input input-bordered input-info w-full max-w-xs' defaultValue={city} {...register("city", { required: true })} />
 
 
                 <input type='url' placeholder='linkedIn Profile Link' className='input input-bordered input-info w-full max-w-xs' defaultValue={linkedIn} {...register("linkedIn", { required: true })} />

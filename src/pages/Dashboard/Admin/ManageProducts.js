@@ -1,6 +1,7 @@
 import { TrashIcon } from '@heroicons/react/solid';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 import DeleteModal from './DeleteModal';
 
 const ManageProducts = () => {
@@ -26,12 +27,19 @@ const ManageProducts = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged === true) {
+                if (data.deletedCount > 0) {
+                    toast.success('Product Deleted Successfully', {
+                        theme: 'colored',
+                        delay: 0,
+                    });
                     setDeletingProduct(null);
                     refetch();
                 }
                 else{
-                    console.log(data);
+                    toast.error('Something Went Wrong', {
+                        theme: 'colored',
+                        delay: 0,
+                    });
                 }
             })
     }

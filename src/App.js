@@ -25,6 +25,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './firebase.init';
 import useAdmin from './CustomHook/useAdmin';
 import RequireAdmin from './pages/RequireAdmin';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -81,6 +82,7 @@ function App() {
         </Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer/>
     </div>
   );
 }

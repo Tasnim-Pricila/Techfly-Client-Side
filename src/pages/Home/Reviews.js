@@ -6,8 +6,38 @@ import { useQuery } from 'react-query';
 import Rating from 'react-rating';
 import auth from '../../firebase.init';
 import proofile from '../../images/proofile.png';
+import Slider from "react-slick";
 
 const Reviews = () => {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        autoplay: true,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: true,
+                padding: "50px"
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                initialSlide: 1,
+                
+              }
+            },
+          ]
+    };
 
     const [user, loading] = useAuthState(auth);
     const image = user?.photoURL;
@@ -19,15 +49,18 @@ const Reviews = () => {
     if (isLoading) {
         return <p>Loading...</p>
     }
+
     return (
-        <div>
+        <div className='px-20'>
             <p className='text-2xl text-center font-semibold mt-20 mb-12 text-secondary uppercase '>Reviews</p>
-            <div className='md:px-24 mb-12 grid md:grid-cols-3 grid-cols-1 gap-8 px-4'>
+
+            <Slider {...settings} className='mb-28'>
                 {
-                    reviews.map(review =>
+                    reviews.slice(0).reverse().map(review =>
                         <div key={review._id} >
-                            <div className="card card-compact shadow-xl border px-4 py-6 flex flex-col justify-center items-center gap-4">
-                                <figure><img src={image ? image : proofile} alt="" className='h-[80px] rounded-full w-[80px] object-cover mb-2' /></figure>
+                            <div className="border-2 border-yellow-400 rounded-lg px-4 py-6 flex flex-col justify-center items-center gap-6 mr-5 ">
+
+                                <img src={image ? image : proofile} alt="" className='h-[80px] rounded-full w-[80px] object-cover mb-2' />
                                 <h2 className="card-title ">{review.reviewedBy}</h2>
                                 <Rating
                                     initialRating={review.rating}
@@ -41,7 +74,7 @@ const Reviews = () => {
                         </div>
                     )
                 }
-            </div>
+            </Slider>
         </div>
     );
 };
