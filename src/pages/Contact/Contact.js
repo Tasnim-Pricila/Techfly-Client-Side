@@ -6,7 +6,7 @@ const Contact = () => {
     return (
         <div className='mb-28'>
             <p className='text-center text-secondary text-2xl mt-16 mb-12 uppercase'>Contact</p>
-            <div className='grid grid-cols-3 px-36 gap-20'>
+            <div className='grid md:grid-cols-3 grid-cols-1 md:px-36 px-8 gap-20'>
                 <div>
                     <p className='text-2xl pb-8'>Call Us or Fill the Form</p>
                     <div>
@@ -28,11 +28,11 @@ const Contact = () => {
                 </div>
                 <div className='col-span-2'>
                     <input type="text" placeholder="Name" class="input input-bordered input-primary w-full max-w-xs mr-4 mb-4" />
-                    <input type="text" placeholder="Email" class="input input-bordered input-primary w-full max-w-xs" />
+                    <input type="text" placeholder="Email" class="input input-bordered input-primary w-full max-w-xs mb-4" />
                     <input type="text" placeholder="Company" class="input input-bordered input-primary w-full max-w-xs mr-4 mb-4" />
-                    <input type="number" placeholder="Phone" class="input input-bordered input-primary w-full max-w-xs" />
-                    <textarea class="textarea textarea-primary block w-[655px] mb-4" placeholder="How Can We Help?"></textarea>
-                    <button class="btn btn-outline btn-primary w-[655px]">Submit</button>
+                    <input type="number" placeholder="Phone" class="input input-bordered input-primary w-full max-w-xs mb-4" />
+                    <textarea class="textarea textarea-primary block md:w-[655px] mb-4" placeholder="How Can We Help?"></textarea>
+                    <button class="btn btn-outline btn-primary md:w-[655px]">Submit</button>
                 </div>
             </div>
         </div>
