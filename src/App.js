@@ -26,6 +26,7 @@ import auth from './firebase.init';
 import useAdmin from './CustomHook/useAdmin';
 import RequireAdmin from './pages/RequireAdmin';
 import { ToastContainer } from 'react-toastify';
+import AllParts from './pages/AllParts';
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -43,6 +44,7 @@ function App() {
         <Route path='/blogs' element={<Blogs />}></Route>
         <Route path='/portfolio' element={<Portfolio />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
+        <Route path='/allParts' element={<AllParts />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<Signup />}></Route>
         <Route path='/purchase/:id' element={

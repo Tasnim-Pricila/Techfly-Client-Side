@@ -55,6 +55,10 @@ const Header = () => {
                         className={({ isActive }) => (isActive ? "text-secondary pb-1 relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "pb-1")} onClick={handleScroll}>
                         Home
                     </NavLink>
+                    <NavLink to='/allParts'
+                        className={({ isActive }) => (isActive ? "text-secondary pb-1 relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "pb-1")} onClick={handleScroll}>
+                        Parts
+                    </NavLink>
                     <NavLink to='/blogs'
                         className={({ isActive }) => (isActive ? "text-secondary pb-1 relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "pb-1")} onClick={handleScroll}>
                         Blogs

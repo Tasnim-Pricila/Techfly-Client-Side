@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import Loading from '../../Shared/Loading';
+import Loading from '../Shared/Loading';
 
-const Parts = () => {
+const AllParts = () => {
     const navigate = useNavigate();
     const { data: parts, isLoading } = useQuery('parts', () =>
         fetch(`https://vast-fjord-23349.herokuapp.com/parts`)
@@ -20,20 +20,12 @@ const Parts = () => {
             behavior: "smooth",
         });
     }
-    const handleClick = () => {
-        navigate('/allParts');
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    }
-
     return (
         <>
             <p className='text-3xl text-center font-semibold mb-12 mt-20 uppercase text-secondary' id='parts'>Parts</p>
             <div className='md:px-24 px-4 mb-12 grid md:grid-cols-3 grid-cols-1 gap-8'>
                 {
-                    parts.slice(-6).reverse().map(part =>
+                    parts.map(part =>
                         <div key={part._id} >
                             <div className="card card-compact shadow-xl border px-4 py-6">
                                 <figure><img src={part.image} alt="Shoes" className='h-[300px] rounded-lg w-full object-cover' /></figure>
@@ -51,15 +43,9 @@ const Parts = () => {
                         </div>
                     )
                 }
-               
-                
             </div>
-            <div className='flex justify-center mb-8'>
-                    <button className='btn btn-secondary btn-outline' onClick={handleClick}>All PArts</button>
-                </div>
         </>
-
     );
 };
 
-export default Parts;
+export default AllParts;
