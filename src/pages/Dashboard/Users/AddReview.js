@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 
 const AddReview = () => {
+    const [rating, setRating] = useState(0);
     const [user, loading] = useAuthState(auth);
     const email = user?.email;
     const userName = user?.displayName;
@@ -18,7 +19,6 @@ const AddReview = () => {
             reviewedBy: userName, 
             email, 
         } 
-        // console.log(reviewData);
         fetch('http://localhost:5000/review',{
             method: 'POST',
             headers: {
@@ -43,8 +43,18 @@ const AddReview = () => {
                         delay: 0,
                     });
                 }   
-            })
+            })      
     };
+    const handleRating = (e) => {
+        const rating = e.target.value;
+        setRating(rating);
+        if(rating < 1 || rating > 5){
+            toast.error(' PLease Rating between 1 to 5 ', {
+                theme: 'colored',
+                delay: 0,
+            });
+        }
+    }
 
     return (
         <div>
@@ -58,13 +68,13 @@ const AddReview = () => {
                         <input placeholder='Email' type="email" defaultValue={email} disabled className='input input-bordered input-info w-full max-w-xs' {...register("email")} />
                
 
-                        <input type="number" placeholder='Give star rating out of 5' className='input input-bordered input-info w-full max-w-xs' {...register("rating", { required: true })} />
+                        <input type="number" step='0.01' placeholder='Give star rating out of 5' className='input input-bordered input-info w-full max-w-xs' {...register("rating", { required: true })} onBlur={handleRating} />
                         {errors.rating?.type === 'required' && "Rating is required"}
 
                         <textarea placeholder='Write Your Review Here...' className='input input-bordered input-info w-full max-w-xs' {...register("description", { required: true })}/> 
                         {errors.description?.type === 'required' && "Description is required"}
 
-                        <input type="submit" className="btn btn-primary w-[320px]" value='Submit Review' />
+                        <input type="submit" className="btn btn-primary w-[320px]" value='Submit Review' disabled={rating > 5} />
                     </form>
                 </div>
             </div>

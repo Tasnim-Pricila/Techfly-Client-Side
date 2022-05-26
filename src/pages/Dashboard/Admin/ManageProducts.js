@@ -2,6 +2,7 @@ import { TrashIcon } from '@heroicons/react/solid';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
+import Loading from '../../../Shared/Loading';
 import DeleteModal from './DeleteModal';
 
 const ManageProducts = () => {
@@ -14,7 +15,7 @@ const ManageProducts = () => {
             .then(res => res.json()))
 
     if (isLoading) {
-        return <p>Loading...</p>
+        return <Loading></Loading>
     }
 
     const handleDelete = async (id) => {

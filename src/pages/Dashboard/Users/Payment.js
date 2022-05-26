@@ -4,14 +4,13 @@ import { useParams } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from './CheckoutForm';
+import Loading from '../../../Shared/Loading';
 
 const stripePromise = loadStripe('pk_test_51L2D2EKZuhtVgyM7S2CeyD5YrpaY7x1Ab3pNWv4hqTyRbvblNQ2KZhgUz71r0JbCZCytaYDey0oYNYlZ1t3QNseW00ZewuwFk9');
 
 const Payment = () => {
     const { id } = useParams();
-    console.log(id);
     const url = (`http://localhost:5000/purchase/${id}`);
-    console.log(url);
 
     const { data: orders, isLoading, refetch } = useQuery(['orders', id], () =>
         fetch(url, {
@@ -23,7 +22,7 @@ const Payment = () => {
             .then(res => res.json()))
 
     if (isLoading) {
-        return <p>Loading...</p>
+        return <Loading></Loading>
     }
 
     return (

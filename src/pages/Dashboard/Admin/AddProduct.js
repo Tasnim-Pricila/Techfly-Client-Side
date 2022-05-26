@@ -26,7 +26,6 @@ const AddProduct = () => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result);
                 if (result.success) {
                     const image = result.data.url;
 
@@ -53,7 +52,7 @@ const AddProduct = () => {
                         .then(res => res.json())
                         .then(insertedData => {
                             if (insertedData.acknowledged === true) {
-                                toast.success('Product Deleted Successfully', {
+                                toast.success('Product Added Successfully', {
                                     theme: 'colored',
                                     delay: 0,
                                 });

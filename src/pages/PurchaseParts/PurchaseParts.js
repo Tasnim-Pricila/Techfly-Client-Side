@@ -1,11 +1,11 @@
 import React, {  useState } from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import Loading from '../../Shared/Loading';
 import SingleItem from './SingleItem';
 
 const PurchaseParts = () => {
     const { id } = useParams();
-    const [modalData, setModalData] = useState(null);
 
     const { data: part, isLoading, refetch } = useQuery(['part', id], () =>
         fetch(`http://localhost:5000/parts/${id}`, {
@@ -16,18 +16,14 @@ const PurchaseParts = () => {
         })
             .then(res => res.json())
     )
-
     if (isLoading) {
-        return <p>Loading...</p>
+        return <Loading></Loading>
     }
-
     const minQuantity = parseInt(part.minimumOrderQuantity);
 
     return (
         <>
             <SingleItem part={part}
-                modalData={modalData}
-                setModalData={setModalData}
                 minQuantity={minQuantity}
                 refetch={refetch}>
             </SingleItem>

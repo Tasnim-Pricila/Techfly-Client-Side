@@ -5,6 +5,7 @@ import auth from '../firebase.init';
 import SocialLogin from '../Shared/SocialLogin';
 import useToken from '../CustomHook/useToken';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Loading from '../Shared/Loading';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -18,7 +19,6 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data);
         const { email, password } = data;
         signInWithEmailAndPassword(email, password);
         setError({});
@@ -51,9 +51,8 @@ const Login = () => {
     }, [loginError]);
 
     if (loginLoading) {
-        return <p>Loading...</p>
+        return <Loading></Loading>
     }
-
 
     return (
         <div className='h-screen'>

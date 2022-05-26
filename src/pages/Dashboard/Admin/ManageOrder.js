@@ -2,6 +2,7 @@ import { TrashIcon } from '@heroicons/react/solid';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
+import Loading from '../../../Shared/Loading';
 import DeleteOrderModal from './DeleteOrderModal';
 
 const ManageOrder = () => {
@@ -17,7 +18,7 @@ const ManageOrder = () => {
             .then(res => res.json()))
 
     if (isLoading) {
-        return <p>Loading...</p>
+        return <Loading></Loading>
     }
     const handleDelete = async (id) => {
         fetch(`http://localhost:5000/purchase/${id}`, {
@@ -60,7 +61,6 @@ const ManageOrder = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 refetch();
             });
 

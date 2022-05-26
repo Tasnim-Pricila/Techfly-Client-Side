@@ -11,8 +11,8 @@ const Portfolio = () => {
             <div className='mt-12'>
                 <p className='text-xl font-bold pb-2 border-b-2 border-black'>Educational Background:</p>
                 <div className='mt-4'>
-                    <div class="overflow-x-auto">
-                        <table class="table table-zebra w-full text-center">
+                    <div className="overflow-x-auto">
+                        <table className="table table-zebra w-full text-center">
                             <thead>
                                 <tr>
                                     <th>Degree</th>

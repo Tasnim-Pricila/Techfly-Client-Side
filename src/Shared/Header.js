@@ -4,16 +4,13 @@ import { MenuAlt1Icon, MenuIcon, XIcon } from '@heroicons/react/solid';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import { signOut } from 'firebase/auth';
-import proofile from '../images/proofile.png'
+import Loading from './Loading';
 
 const Header = () => {
 
     const [menuIcon, setMenuIcon] = useState(false);
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
-    const email = user?.email;
-    const userName = user?.displayName;
-    const image = user?.photoURL;
 
     const handleScroll = () => {
         window.scrollTo({
@@ -24,7 +21,7 @@ const Header = () => {
     }
 
     if (loading) {
-        return <p>Loading</p>
+        return <Loading></Loading>
     }
     const logOut = () => {
         signOut(auth);
@@ -38,7 +35,7 @@ const Header = () => {
                 {
                     user &&
                     <div className='md:hidden'>
-                        <label for="dashboard-drawer" class="drawer-button">
+                        <label htmlFor="dashboard-drawer" className="drawer-button">
                             <MenuAlt1Icon className='w-6'></MenuAlt1Icon>
                         </label>
                     </div>

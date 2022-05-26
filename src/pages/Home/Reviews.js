@@ -7,8 +7,12 @@ import Rating from 'react-rating';
 import auth from '../../firebase.init';
 import proofile from '../../images/proofile.png';
 import Slider from "react-slick";
+import Loading from '../../Shared/Loading';
 
 const Reviews = () => {
+    const [user, loading] = useAuthState(auth);
+    const image = user?.photoURL;
+
     const settings = {
         dots: true,
         infinite: true,
@@ -39,15 +43,13 @@ const Reviews = () => {
           ]
     };
 
-    const [user, loading] = useAuthState(auth);
-    const image = user?.photoURL;
-
-    const { data: reviews, isLoading, refetch } = useQuery('reviews', () =>
+    const { data: reviews, isLoading } = useQuery('reviews', () =>
         fetch(`http://localhost:5000/reviews`)
             .then(res => res.json())
     )
-    if (isLoading) {
-        return <p>Loading...</p>
+
+    if (isLoading || loading) {
+        return <Loading></Loading>
     }
 
     return (
@@ -69,7 +71,7 @@ const Reviews = () => {
                                     readonly>
                                 </Rating>
                                 <h2 className="card-title">{review.rating}</h2>
-                                <p>{review.description}</p>
+                                <p className='h-28'>{review.description}</p>
                             </div>
                         </div>
                     )

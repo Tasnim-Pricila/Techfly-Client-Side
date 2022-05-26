@@ -2,13 +2,13 @@ import { faGoogle } from '@fortawesome/fontawesome-free-brands';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect } from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useToken from '../CustomHook/useToken';
 import auth from '../firebase.init';
+import Loading from './Loading';
 
 const SocialLogin = () => {
     const navigate = useNavigate();
-    const location = useLocation();
 
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [token] = useToken(googleUser);
@@ -19,11 +19,8 @@ const SocialLogin = () => {
         }
     }, [navigate, token])
 
-    if (googleUser) {
-        // console.log(googleUser);
-    }
     if (googleLoading) {
-        return <p>Loading</p>
+        return <Loading></Loading>
     }
 
     return (

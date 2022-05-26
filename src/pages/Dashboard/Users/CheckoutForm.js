@@ -10,7 +10,7 @@ const CheckoutForm = ({ orders }) => {
     const [clientSecret, setClientSecret] = useState('');
     const [processing, setProcessing] = useState(false);
     const { price, purchasedBy, productName, email, _id } = orders;
-    console.log(price);
+
     useEffect(() => {
         fetch("http://localhost:5000/create-payment-intent", {
             method: "POST",
@@ -59,7 +59,6 @@ const CheckoutForm = ({ orders }) => {
                 // Handle result.error or result.paymentIntent
                 if (result.paymentIntent) {
                     setCardError('');
-                    console.log(result.paymentIntent);
                     setSuccess('Your payment is completed');
                     setTransactionID(result.paymentIntent.id);
 
@@ -80,7 +79,6 @@ const CheckoutForm = ({ orders }) => {
                         .then(res => res.json())
                         .then(data => {
                             setProcessing(false);
-                            console.log(data);
                         });
                 }
                 if (result.error) {

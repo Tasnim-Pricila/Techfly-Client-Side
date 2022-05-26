@@ -7,6 +7,7 @@ import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Loading from '../../Shared/Loading';
 
 const MyProfile = () => {
 
@@ -14,7 +15,6 @@ const MyProfile = () => {
     const email = user?.email;
     const userName = user?.displayName;
     const image = user?.photoURL;
-    // console.log(user, image)
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
     const [hide, setHide] = useState(false);
@@ -65,8 +65,8 @@ const MyProfile = () => {
                 }
             })
     }
-    if (isLoading) {
-        return <p>Loading...</p>
+    if (isLoading || loading) {
+        return <Loading></Loading>
     }
     const handleEdit = () => {
         navigate(`/dashboard/editProfile/${email}`);
@@ -77,15 +77,10 @@ const MyProfile = () => {
                 <div className='flex justify-between border-b-2 border-slate-700 pb-2 items-center mb-6'>
                     <p className='text-xl font-bold text-primary basis-1/2 '>My Profile</p>
                     <div className='flex items-centerbasis-1/2 justify-end'>
-                        <button className='flex btn btn-primary btn-outline group pt-1 btn-sm'>Edit
-                            <FontAwesomeIcon icon={faEdit} className='text-primary pl-4 group-hover:text-white' onClick={handleEdit}></FontAwesomeIcon>
+                        <button className='flex btn btn-primary btn-outline group pt-1 btn-sm' onClick={handleEdit}>Edit
+                            <FontAwesomeIcon icon={faEdit} className='text-primary pl-4 group-hover:text-white' ></FontAwesomeIcon>
                         </button>
-                        
-
                     </div>
-
-
-
                 </div>
 
                 <div className='flex flex-col gap-2 justify-center items-center'>
@@ -113,7 +108,7 @@ const MyProfile = () => {
                     }
                 </div>
             </div>
-            <div className='mb-8 flex flex-col  items-center'>
+            <div className='mb-8 flex flex-col items-center'>
                 {
                     !hide &&
                     <button className='text-xl font-bold text-primary mb-8 mt-8 border-slate-700 border px-4 py-2 rounded' onClick={() => setShow(!show)}>Add More Information</button>
@@ -122,23 +117,39 @@ const MyProfile = () => {
                 {show &&
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
                         <input placeholder='Phone' type="text" className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("phone", { required: true })} />
-                        {errors.phone?.type === 'required' && "phone is required"}
+                        <small className='text-error font-semibold px-10'>
+                            {errors.phone?.type === 'required' && "phone is required"}
+                        </small>
+
 
                         <input placeholder='Education' type="text" className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("education", { required: true })} />
-                        {errors.education?.type === 'required' && "education is required"}
+                        <small className='text-error font-semibold px-10'>
+                            {errors.education?.type === 'required' && "education is required"}
+                        </small>
 
                         <input placeholder='City' type="text" className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("city", { required: true })} />
-                        {errors.city?.type === 'required' && "city is required"}
+                        <small className='text-error font-semibold px-10'>
+                            {errors.city?.type === 'required' && "city is required"}
+                        </small>
 
                         <input type="text" placeholder='District' className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("district", { required: true })} />
-                        {errors.district?.type === 'required' && "district is required"}
+                        <small className='text-error font-semibold px-10'>
+                            {errors.district?.type === 'required' && "district is required"}
+                        </small>
 
-                        <input type='url' placeholder='linkedIn Profile Link' className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("linkedIn", {})} />
-                        {errors.linkedIn?.type === 'required' && "linkedIn is required"}
+
+                        <input type='url' placeholder='linkedIn Profile Link' className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("linkedIn", { required: true })} />
+                        <small className='text-error font-semibold px-10'>
+                            {errors.linkedIn?.type === 'required' && "linkedIn is required"}
+                        </small>
+
 
 
                         <textarea placeholder='Write Your Address Here...' className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("address", { required: true })} />
-                        {errors.address?.type === 'required' && "address is required"}
+                        <small className='text-error font-semibold px-10'>
+                            {errors.address?.type === 'required' && "address is required"}
+                        </small>
+
 
                         <input type="submit" className="btn btn-primary w-[320px]" value='Submit' />
                     </form>

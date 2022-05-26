@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import useToken from '../CustomHook/useToken';
 import auth from '../firebase.init';
+import Loading from '../Shared/Loading';
 import SocialLogin from '../Shared/SocialLogin';
 
 const Signup = () => {
@@ -23,7 +24,6 @@ const Signup = () => {
         const userData = data;
         const { name, email, password, cpassword } = userData;
         if (password === cpassword) {
-            console.log(userData);
             await createUserWithEmailAndPassword(email, password);
             await updateProfile({ displayName: name });
             reset();
@@ -43,9 +43,6 @@ const Signup = () => {
         }
     }, [token, navigate])
 
-    if (emailUser) {
-        console.log(emailUser);
-    }
     useEffect(() => {
         if (emailError) {
             switch (emailError.code) {
@@ -62,7 +59,7 @@ const Signup = () => {
     }, [emailError]);
 
     if (emailLoading || updating) {
-        return <p>Loading</p>
+        return <Loading></Loading>
     }
 
     return (

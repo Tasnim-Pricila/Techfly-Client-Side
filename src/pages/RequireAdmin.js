@@ -4,6 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate, useLocation } from 'react-router-dom';
 import useAdmin from '../CustomHook/useAdmin';
 import auth from '../firebase.init';
+import Loading from '../Shared/Loading';
 
 const RequireAdmin = ({children}) => {
 
@@ -12,7 +13,7 @@ const RequireAdmin = ({children}) => {
     const location = useLocation();
 
     if (loading || adminLoading) {
-        return <p>Loading...</p>
+        return <Loading></Loading>
     }
 
     if (!user || !admin) {

@@ -7,6 +7,7 @@ import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
+import Loading from '../../../Shared/Loading';
 import DeleteMyOrder from './DeleteMyOrder';
 
 const MyOrders = () => {
@@ -25,11 +26,11 @@ const MyOrders = () => {
             .then(res => res.json()))
 
     if (isLoading) {
-        return <p>Loading...</p>
+        return <Loading></Loading>
     }
 
     if (loading) {
-        return <p>Loading...</p>
+        return <Loading></Loading>
     }
 
     const handleDelete = async (id) => {

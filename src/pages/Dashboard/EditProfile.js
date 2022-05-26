@@ -1,15 +1,17 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Loading from '../../Shared/Loading';
 
 const EditProfile = () => {
     const { email } = useParams();
     const [user, loading] = useAuthState(auth);
     const userName = user?.displayName;
+    const navigate = useNavigate();
 
     const { data: userInfo, isLoading, refetch } = useQuery(['userInfo', email], () =>
         fetch(`http://localhost:5000/user/${email}`, {
@@ -17,7 +19,7 @@ const EditProfile = () => {
             .then(res => res.json()))
 
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         const { phone, education, city, district, linkedIn, address, name } = data;
         const details = {
@@ -48,6 +50,7 @@ const EditProfile = () => {
                     });
                     refetch();
                     reset();
+                    navigate('/dashboard/myProfile')
                 }
                 else {
                     toast.error('Something Went Wrong', {
@@ -57,8 +60,8 @@ const EditProfile = () => {
                 }
             })
     }
-    if (isLoading) {
-        return <p>Loading...</p>
+    if (isLoading || loading) {
+        return <Loading></Loading>
     }
 
     const { phone, city, district, address, linkedIn, education, } = userInfo[0];
