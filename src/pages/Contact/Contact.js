@@ -5,7 +5,7 @@ import React from 'react';
 const Contact = () => {
     return (
         <div className='mb-28'>
-            <p className='text-center text-secondary text-2xl mt-16 mb-12 uppercase'>Contact</p>
+            <p className='text-center text-secondary text-2xl mt-16 mb-12 uppercase font-bold'>Contact</p>
             <div className='grid md:grid-cols-3 grid-cols-1 md:px-36 px-8 gap-20'>
                 <div>
                     <p className='text-2xl pb-8'>Call Us or Fill the Form</p>

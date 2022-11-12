@@ -2,11 +2,11 @@ import React from 'react';
 
 const Blogs = () => {
     return (
-        <div className='flex flex-col gap-6 my-12 md:px-20 px-4'>
-            <div className='border-4 py-2 px-4'>
+        <div className='flex flex-col gap-6 mb-12 md:px-20 px-4'>
+            <p className='text-center text-secondary text-2xl my-12 uppercase font-bold'>Blogs</p>
+            <div className='border-4 px-4 py-2'>
                 <p className='text-xl text-primary font-semibold mb-2'>How will you improve the performance of a React Application?</p>
                 <div>
-
                 </div>
                 <li>
                     During the re-render process, only re-rendering the components which was necessary for the change and skipping the components which was not nececssary.

@@ -16,6 +16,7 @@ const Login = () => {
         password: "",
         others: ""
     })
+    const [signInWithEmailAndPassword, loginUser, loginLoading, loginError] = useSignInWithEmailAndPassword(auth);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -23,8 +24,6 @@ const Login = () => {
         signInWithEmailAndPassword(email, password);
         setError({});
     };
-
-    const [signInWithEmailAndPassword, loginUser, loginLoading, loginError] = useSignInWithEmailAndPassword(auth);
 
     const [token] = useToken(loginUser);
 

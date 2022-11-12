@@ -38,7 +38,6 @@ const MyProfile = () => {
             linkedIn,
             address
         }
-
         fetch(`https://vast-fjord-23349.herokuapp.com/user/${email}`, {
             method: 'PATCH',
             headers: {
@@ -47,7 +46,6 @@ const MyProfile = () => {
             },
             body: JSON.stringify(details)
         })
-
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {

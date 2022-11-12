@@ -88,14 +88,9 @@ const EditProfile = () => {
 
                 <input type='url' placeholder='linkedIn Profile Link' className='input input-bordered input-info w-full max-w-xs' defaultValue={linkedIn} {...register("linkedIn", { required: true })} />
 
-
-
                 <input type="text" placeholder='District' className='input input-bordered input-info w-full max-w-xs' defaultValue={district} {...register("district", { required: true })} />
 
-
                 <textarea placeholder='Write Your Address Here...' className='input input-bordered input-info w-full max-w-xs' defaultValue={address} {...register("address", { required: true })} />
-
-
 
                 <input type="submit" className="btn btn-primary w-[320px]" value='Update' />
             </form>

@@ -27,6 +27,9 @@ import useAdmin from './CustomHook/useAdmin';
 import RequireAdmin from './pages/RequireAdmin';
 import { ToastContainer } from 'react-toastify';
 import AllParts from './pages/AllParts';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 function App() {
   const [user, loading] = useAuthState(auth);

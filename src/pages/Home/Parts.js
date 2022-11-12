@@ -31,11 +31,13 @@ const Parts = () => {
     return (
         <>
             <p className='text-3xl text-center font-semibold mb-12 mt-20 uppercase text-secondary' id='parts'>Parts</p>
-            <div className='md:px-24 px-4 mb-12 grid md:grid-cols-3 grid-cols-1 gap-8'>
+            <div className='md:px-24 px-4 mb-12 grid md:grid-cols-3 grid-cols-1 gap-8'
+            >
                 {
                     parts.slice(-6).reverse().map(part =>
                         <div key={part._id} >
-                            <div className="card card-compact shadow-xl border px-4 py-6">
+                            <div className="card card-compact shadow-xl border px-4 py-6"
+                              data-aos="zoom-in-up" data-aos-easing="ease-out-cubic" data-aos-duration = "2000" data-aos-delay="80">
                                 <figure><img src={part.image} alt="Shoes" className='h-[300px] rounded-lg w-full object-cover' /></figure>
                                 <div className="card-body md:h-[400px]">
                                     <h2 className="card-title md:h-16">{part.title}</h2>

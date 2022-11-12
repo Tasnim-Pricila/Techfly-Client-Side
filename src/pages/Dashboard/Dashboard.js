@@ -22,35 +22,42 @@ const Dashboard = () => {
                     </p>
                     <Outlet></Outlet>
                 </div>
+               
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay "></label>
-                    <ul className="p-4 px-16 overflow-y-auto w-80 text-base-content bg-warning">
+                    <ul className="overflow-y-auto w-80 text-base-content bg-warning px-12 py-2">
                         {
                             !admin &&
                             <>
-                                <li className='py-2 font-semibold text-xl mb-2'><NavLink to='/dashboard' >My Orders</NavLink></li>
-                                <li className='font-semibold text-xl py-2 mb-2'><NavLink to='/dashboard/review'> Add a Review </NavLink></li>
+                                <li className='py-2 font-semibold text-xl mb-2' >
+                                    <NavLink to='/dashboard'>My Orders</NavLink>
+                                </li>
+                                <li className='font-semibold text-xl py-2 mb-2'>
+                                    <NavLink to='/dashboard/review' className={({ isActive }) => (isActive ? "text-primary" : "")} > Add a Review </NavLink>
+                                </li>
                             </>
                         }
                         {
                             admin &&
                             <>
-                                <li className='py-2 font-semibold text-xl mb-2'>
+                                <li 
+                                className='py-2 font-semibold text-xl mb-2'
+                                 >
                                     <NavLink to='/dashboard'>Manage Products</NavLink>
                                 </li>
                                 <li className='py-2 font-semibold text-xl mb-2'>
-                                    <NavLink to='/dashboard/manageOrders'>Manage All Orders</NavLink>
+                                    <NavLink to='/dashboard/manageOrders' className={({ isActive }) => (isActive ? "text-primary" : "")}>Manage All Orders</NavLink>
                                 </li>
                                 <li className='py-2 font-semibold text-xl mb-2'>
-                                    <NavLink to='/dashboard/addProduct'>Add a Product</NavLink>
+                                    <NavLink to='/dashboard/addProduct' className={({ isActive }) => (isActive ? "text-primary" : "")}>Add a Product</NavLink>
                                 </li>
                                 <li className='py-2 font-semibold text-xl mb-2'>
-                                    <NavLink to='/dashboard/makeAdmin'>Make Admin</NavLink>
+                                    <NavLink to='/dashboard/makeAdmin' className={({ isActive }) => (isActive ? "text-primary" : "")}>Make Admin</NavLink>
                                 </li>
                             </>
                         }
                         <li className='font-semibold text-xl py-2 mb-2'>
-                            <NavLink to='/dashboard/myProfile'  >My Profile</NavLink>
+                            <NavLink to='/dashboard/myProfile' className={({ isActive }) => (isActive ? "text-primary" : "")}>My Profile</NavLink>
                         </li>
                     </ul>
                 </div>
