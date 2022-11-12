@@ -41,7 +41,7 @@ const AddProduct = () => {
                     }
 
                     // Post to database 
-                    fetch(`https://vast-fjord-23349.herokuapp.com/parts`, {
+                    fetch(`https://techfly-api.onrender.com/parts`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

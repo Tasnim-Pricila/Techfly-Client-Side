@@ -34,7 +34,7 @@ const Reviews = () => {
     };
 
     const { data: reviews, isLoading } = useQuery('reviews', () =>
-        fetch(`https://vast-fjord-23349.herokuapp.com/reviews`)
+        fetch(`https://techfly-api.onrender.com/reviews`)
             .then(res => res.json())
     )
 

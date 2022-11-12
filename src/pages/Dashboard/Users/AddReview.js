@@ -19,7 +19,7 @@ const AddReview = () => {
             reviewedBy: userName, 
             email, 
         } 
-        fetch('https://vast-fjord-23349.herokuapp.com/review',{
+        fetch('https://techfly-api.onrender.com/review',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

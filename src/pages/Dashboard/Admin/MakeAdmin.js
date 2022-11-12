@@ -6,7 +6,7 @@ import Loading from '../../../Shared/Loading';
 const MakeAdmin = () => {
     // GEt USers 
     const { data: users, isLoading, refetch } = useQuery('users', () =>
-        fetch('https://vast-fjord-23349.herokuapp.com/users', {
+        fetch('https://techfly-api.onrender.com/users', {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -19,7 +19,7 @@ const MakeAdmin = () => {
     }
     // MAke Admin 
     const makeAdmin = (email) => {
-        fetch(`https://vast-fjord-23349.herokuapp.com/user/admin/${email}`, {
+        fetch(`https://techfly-api.onrender.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

@@ -9,7 +9,7 @@ const ManageOrder = () => {
     const [deletingOrder, setDeletingOrder] = useState(null);
 
     const { data: purchases, isLoading, refetch } = useQuery('purchase', () =>
-        fetch('https://vast-fjord-23349.herokuapp.com/purchase', {
+        fetch('https://techfly-api.onrender.com/purchase', {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -21,7 +21,7 @@ const ManageOrder = () => {
         return <Loading></Loading>
     }
     const handleDelete = async (id) => {
-        fetch(`https://vast-fjord-23349.herokuapp.com/purchase/${id}`, {
+        fetch(`https://techfly-api.onrender.com/purchase/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -51,7 +51,7 @@ const ManageOrder = () => {
             status: 'Shipped'
         }
 
-        fetch(`https://vast-fjord-23349.herokuapp.com/purchase/${id}`, {
+        fetch(`https://techfly-api.onrender.com/purchase/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

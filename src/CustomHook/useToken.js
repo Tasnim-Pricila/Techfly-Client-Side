@@ -9,7 +9,7 @@ const useToken = (user) => {
         const userEmail = { email: email };
 
         if (email) {
-            fetch(`https://vast-fjord-23349.herokuapp.com/user/${email}`, {
+            fetch(`https://techfly-api.onrender.com/user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

@@ -19,7 +19,7 @@ const MyProfile = () => {
     const [show, setShow] = useState(false);
 
     const { data: userInfo, isLoading, refetch } = useQuery(['userInfo', email], () =>
-        fetch(`https://vast-fjord-23349.herokuapp.com/user/${email}`, {
+        fetch(`https://techfly-api.onrender.com/user/${email}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -38,7 +38,7 @@ const MyProfile = () => {
             linkedIn,
             address
         }
-        fetch(`https://vast-fjord-23349.herokuapp.com/user/${email}`, {
+        fetch(`https://techfly-api.onrender.com/user/${email}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

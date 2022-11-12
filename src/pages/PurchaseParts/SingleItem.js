@@ -45,7 +45,7 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
             address: e.target.address.value,
             phone: e.target.phone.value,
         }
-        fetch('https://vast-fjord-23349.herokuapp.com/purchase', {
+        fetch('https://techfly-api.onrender.com/purchase', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

@@ -10,7 +10,7 @@ const ManageProducts = () => {
     const [deletingProduct, setDeletingProduct] = useState(null);
 
     const { data: products, isLoading, refetch } = useQuery('products', () =>
-        fetch('https://vast-fjord-23349.herokuapp.com/parts', {
+        fetch('https://techfly-api.onrender.com/parts', {
         })
             .then(res => res.json()))
 
@@ -19,7 +19,7 @@ const ManageProducts = () => {
     }
 
     const handleDelete = async (id) => {
-        fetch(`https://vast-fjord-23349.herokuapp.com/parts/${id}`, {
+        fetch(`https://techfly-api.onrender.com/parts/${id}`, {
             method: 'DELETE',
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

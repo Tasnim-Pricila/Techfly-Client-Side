@@ -6,7 +6,7 @@ import Loading from '../../Shared/Loading';
 const Parts = () => {
     const navigate = useNavigate();
     const { data: parts, isLoading } = useQuery('parts', () =>
-        fetch(`https://vast-fjord-23349.herokuapp.com/parts`)
+        fetch(`https://techfly-api.onrender.com/parts`)
             .then(res => res.json())
 
     )

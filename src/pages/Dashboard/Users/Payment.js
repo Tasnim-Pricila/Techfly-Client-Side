@@ -10,7 +10,7 @@ const stripePromise = loadStripe('pk_test_51L2D2EKZuhtVgyM7S2CeyD5YrpaY7x1Ab3pNW
 
 const Payment = () => {
     const { id } = useParams();
-    const url = (`https://vast-fjord-23349.herokuapp.com/purchase/${id}`);
+    const url = (`https://techfly-api.onrender.com/purchase/${id}`);
 
     const { data: orders, isLoading, refetch } = useQuery(['orders', id], () =>
         fetch(url, {
