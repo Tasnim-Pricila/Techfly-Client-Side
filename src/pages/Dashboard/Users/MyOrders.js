@@ -43,7 +43,7 @@ const MyOrders = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged === true) {
+                if (data.data.acknowledged === true) {
                     toast.success('Order Deleted Successfully', {
                         theme: 'colored',
                         delay: 0,
@@ -76,7 +76,7 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, index) =>
+                            orders.data.map((order, index) =>
                                 <tr key={order._id}>
                                     <th>{index + 1}</th>
                                     <td className='font-semibold text-secondary'>{order.productName}</td>
@@ -98,9 +98,9 @@ const MyOrders = () => {
                                     <td>
                                         {
                                             !order.paid &&
-                                            <label htmlFor="deleteMyOrder" className="btn btn-error btn-outline" onClick={() => setDeletingOrder(order)}>
+                                            <label htmlFor="deleteMyOrder" className="btn btn-error btn-outline flex justify-center items-center " onClick={() => setDeletingOrder(order)}>
                                                 Delete
-                                                <TrashIcon className='w-6 h-5'></TrashIcon>
+                                                <TrashIcon className='w-5'></TrashIcon>
                                             </label>
                                         }
                                     </td>

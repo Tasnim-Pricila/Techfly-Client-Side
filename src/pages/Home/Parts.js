@@ -34,7 +34,7 @@ const Parts = () => {
             <div className='md:px-24 px-4 mb-12 grid md:grid-cols-3 grid-cols-1 gap-8'
             >
                 {
-                    parts.slice(-6).reverse().map(part =>
+                    parts.data.slice(-6).reverse().map(part =>
                         <div key={part._id} >
                             <div className="card card-compact shadow-xl border px-4 py-6"
                               data-aos="zoom-in-up" data-aos-easing="ease-out-cubic" data-aos-duration = "2000" data-aos-delay="80">

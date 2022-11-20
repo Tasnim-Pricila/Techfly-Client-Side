@@ -30,7 +30,7 @@ const AddReview = () => {
         
         .then(res => res.json())
             .then(data => {
-                if (data.acknowledged === true) {
+                if (data.data.acknowledged === true) {
                     toast.success('Review Submitted Successfully', {
                         theme: 'colored',
                         delay: 0,

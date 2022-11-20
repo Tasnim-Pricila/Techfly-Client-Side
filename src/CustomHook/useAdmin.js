@@ -6,7 +6,7 @@ const useAdmin = (user) => {
     const [adminLoading, setAdminLoading] = useState(true);
     const email = user?.email;
     if (email) {
-        fetch(`https://techfly-api.onrender.com/admin/${email}`, {
+        fetch(`https://techfly-api.onrender.com/user/isAdmin/${email}`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -14,8 +14,8 @@ const useAdmin = (user) => {
             }
         })
             .then(res => res.json())
-            .then(data =>{
-                setAdmin(data.admin);
+            .then(data => {
+                setAdmin(data.data.admin);
                 setAdminLoading(false);
             } )
     }

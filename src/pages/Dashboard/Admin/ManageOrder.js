@@ -30,7 +30,7 @@ const ManageOrder = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.deletedCount > 0) {
+                if (data.data.deletedCount > 0) {
                     toast.success('Order Deleted Successfully', {
                         theme: 'colored',
                         delay: 0,
@@ -85,7 +85,7 @@ const ManageOrder = () => {
                         </thead>
                         <tbody>
                             {
-                                purchases.map((purchase, index) =>
+                                purchases.data.map((purchase, index) =>
                                     <tr key={purchase._id}>
                                         <th>{index + 1}</th>
                                         <td>{purchase.productName}</td>

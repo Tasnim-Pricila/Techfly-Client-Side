@@ -47,7 +47,7 @@ const EditProfile = () => {
 
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount > 0) {
+                if (data.data.modifiedCount > 0) {
                     toast.success('User Updated Successfully', {
                         theme: 'colored',
                         delay: 0,
@@ -55,6 +55,12 @@ const EditProfile = () => {
                     refetch();
                     reset();
                     navigate('/dashboard/myProfile')
+                }
+                else if (data.data.modifiedCount === 0) {
+                    toast.error('Change anything to update', {
+                        theme: 'colored',
+                        delay: 0,
+                    });
                 }
                 else {
                     toast.error('Something Went Wrong', {
@@ -68,7 +74,7 @@ const EditProfile = () => {
         return <Loading></Loading>
     }
 
-    const { phone, city, district, address, linkedIn, education, } = userInfo[0];
+    const { phone, city, district, address, linkedIn, education, } = userInfo.data;
 
     return (
         <div>

@@ -28,7 +28,7 @@ const ManageProducts = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.deletedCount > 0) {
+                if (data.data.deletedCount > 0) {
                     toast.success('Product Deleted Successfully', {
                         theme: 'colored',
                         delay: 0,
@@ -62,7 +62,7 @@ const ManageProducts = () => {
                     </thead>
                     <tbody>
                         {
-                            products.map((product, index) =>
+                            products.data.map((product, index) =>
                                 <tr key={product._id}>
                                     <th>{index + 1}</th>
                                     <td className='font-semibold text-secondary w-[80px]'> <img src={product.image} alt="" /> </td>

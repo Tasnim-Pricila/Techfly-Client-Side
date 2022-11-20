@@ -25,7 +25,7 @@ const AllParts = () => {
             <p className='text-3xl text-center font-semibold mb-12 mt-20 uppercase text-secondary' id='parts'>Parts</p>
             <div className='md:px-24 px-4 mb-12 grid md:grid-cols-3 grid-cols-1 gap-8'>
                 {
-                    parts.map(part =>
+                    parts.data.map(part =>
                         <div key={part._id} >
                             <div className="card card-compact shadow-xl border px-4 py-6">
                                 <figure><img src={part.image} alt="Shoes" className='h-[300px] rounded-lg w-full object-cover' /></figure>

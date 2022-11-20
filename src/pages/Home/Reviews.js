@@ -34,7 +34,7 @@ const Reviews = () => {
     };
 
     const { data: reviews, isLoading } = useQuery('reviews', () =>
-        fetch(`https://techfly-api.onrender.com/reviews`)
+        fetch(`https://techfly-api.onrender.com/review`)
             .then(res => res.json())
     )
 
@@ -48,7 +48,7 @@ const Reviews = () => {
 
             <Slider {...settings} className='mb-28'>
                 {
-                    reviews.slice(0).reverse().map(review =>
+                    reviews.data.slice(0).reverse().map(review =>
                         <div key={review._id} >
                             <div className="border-2 border-yellow-400 rounded-lg px-4 py-6 flex flex-col justify-center items-center gap-6 mr-5 ">
 

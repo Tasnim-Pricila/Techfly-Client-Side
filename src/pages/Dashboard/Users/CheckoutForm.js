@@ -22,8 +22,8 @@ const CheckoutForm = ({ orders }) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                if (data?.clientSecret) {
-                    setClientSecret(data.clientSecret);
+                if (data?.data?.clientSecret) {
+                    setClientSecret(data.data.clientSecret);
                 }
             })
     }, [price]);

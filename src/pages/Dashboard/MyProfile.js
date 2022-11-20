@@ -48,7 +48,7 @@ const MyProfile = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount > 0) {
+                if (data.data.modifiedCount > 0) {
                     toast.success('Info Added Successfully', {
                         theme: 'colored',
                         delay: 0,
@@ -88,22 +88,22 @@ const MyProfile = () => {
                     <img src={image} alt="" className='w-28 rounded-full mb-2' />
                     <p className='text-xl font-semibold'> Name: {userName}</p>
                     <p> <b> Email: </b> {email}</p>
-                    {userInfo[0].phone &&
-                        <p> <b> Phone: </b>  {userInfo[0].phone}</p>
+                    {userInfo?.data?.phone &&
+                        <p> <b> Phone: </b>  {userInfo.data.phone}</p>
                     }
-                    {userInfo[0].city &&
-                        <p> <b> City: </b> {userInfo[0].city}</p>
+                    {userInfo?.data?.city &&
+                        <p> <b> City: </b> {userInfo.data.city}</p>
                     }
-                    {userInfo[0].district &&
-                        <p> <b> District: </b>  {userInfo[0].district}</p>
+                    {userInfo?.data?.district &&
+                        <p> <b> District: </b>  {userInfo.data.district}</p>
                     }
-                    {userInfo[0].address &&
-                        <p> <b> Address: </b> {userInfo[0].address}</p>
+                    {userInfo?.data?.address &&
+                        <p> <b> Address: </b> {userInfo.data.address}</p>
                     }
-                    {userInfo[0].linkedIn &&
+                    {userInfo?.data?.linkedIn &&
                         <p> <b> Linkedin: </b>
-                            <a href={`${userInfo[0].linkedIn}`} className='text-blue-600 underline' alt=''>
-                                <button>{userInfo[0].linkedIn}</button>
+                            <a href={`${userInfo.data.linkedIn}`} className='text-blue-600 underline' alt=''>
+                                <button>{userInfo.data.linkedIn}</button>
                             </a>
                         </p>
                     }
@@ -112,7 +112,7 @@ const MyProfile = () => {
             <div className='mb-8 flex flex-col items-center'>
                 {
 
-                    userInfo[0].education ? '' :
+                    userInfo?.data?.education ? '' :
 
                     <button className='text-xl font-bold text-primary mb-8 mt-8 border-slate-700 border px-4 py-2 rounded' onClick={() => setShow(!show)}>Add More Information</button>
                 }
@@ -120,7 +120,7 @@ const MyProfile = () => {
                 {show &&
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
                         {
-                            userInfo[0].phone ? '' :
+                            userInfo?.data?.phone ? '' :
                             <>
                                 <input placeholder='Phone' type="text" className='input input-bordered input-info w-full max-w-xs font-semibold self-center' {...register("phone", { required: true })} />
                                 <small className='text-error font-semibold px-10'>

@@ -51,7 +51,7 @@ const AddProduct = () => {
                     })
                         .then(res => res.json())
                         .then(insertedData => {
-                            if (insertedData.acknowledged === true) {
+                            if (insertedData.data.acknowledged === true) {
                                 toast.success('Product Added Successfully', {
                                     theme: 'colored',
                                     delay: 0,

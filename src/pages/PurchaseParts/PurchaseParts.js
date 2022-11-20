@@ -19,11 +19,11 @@ const PurchaseParts = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    const minQuantity = parseInt(part.minimumOrderQuantity);
+    const minQuantity = parseInt(part.data.minimumOrderQuantity);
 
     return (
         <>
-            <SingleItem part={part}
+            <SingleItem part={part.data}
                 minQuantity={minQuantity}
                 refetch={refetch}>
             </SingleItem>

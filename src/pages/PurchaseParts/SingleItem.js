@@ -12,11 +12,12 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
     const userName = user?.displayName;
     const [quantity, setQuantity] = useState(minQuantity);
     const [error, setError] = useState('');
-    if(loading){
+    if (loading) {
         return <Loading></Loading>
     }
+    console.log(part);
     const { title, price, availableQuantity, image, minimumOrderQuantity, description } = part;
-    
+
     const availableQty = parseInt(availableQuantity);
     const minQty = parseInt(minimumOrderQuantity);
 
@@ -29,7 +30,7 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
         else if (quantity > availableQty) {
             setError(`You can not order more than ${availableQty} products `)
         }
-        else if( quantity <= availableQty  || quantity >= minQty ){
+        else if (quantity <= availableQty || quantity >= minQty) {
             setError('');
         }
     }
@@ -37,7 +38,7 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
     const handleSubmit = e => {
         e.preventDefault();
         const purchase = {
-            productName : title,
+            productName: title,
             quantity,
             price,
             purchasedBy: userName,
@@ -55,7 +56,7 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged === true) {
+                if (data.data.acknowledged === true) {
                     toast.success('Your order is placed', {
                         theme: 'colored',
                         delay: 0,
@@ -72,8 +73,8 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
                 refetch();
                 setModalData(null);
             })
+    }
 
-   }
 
     return (
         <div>
@@ -101,30 +102,29 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
             <div className='md:w-1/3 mx-auto border-4 my-8'>
                 <form onSubmit={handleSubmit} className='flex flex-col gap-4 my-8 '>
                     <label htmlFor="Quantity" className='font-semibold md:pl-24 pl-8'>Quantity</label>
-                    <input placeholder='quantity' name='quantity' type="number" defaultValue={minQty} className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' onKeyUp={handleQuantity} required
-                         />
+                    <input placeholder='quantity' name='quantity' type="number" inputmode="numeric" defaultValue={minQty} className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' onKeyUp={handleQuantity} required />
                     <small className='text-center text-error font-bold'>
                         {error}
                     </small>
 
                     <input type="text" name='title' defaultValue={title} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required />
 
-                    <input type="number" name='price' defaultValue={price} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required/>
+                    <input type="number" name='price' defaultValue={price} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required />
 
                     <input type="text" name='username' defaultValue={userName} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required />
 
-                    <input type="email" name='email' defaultValue={email} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required/>
+                    <input type="email" name='email' defaultValue={email} disabled className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required />
 
                     <input type="number" name='phone' placeholder='Phone' className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required />
-                   
+
 
                     <input type="text" name='address' placeholder='Address' className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' required />
-                    
+
 
                     <input type="submit" className="btn btn-warning w-[320px] self-center" value='Purchase' disabled={quantity < minQty || quantity > availableQty} />
                 </form>
             </div>
-            
+
         </div>
     );
 };

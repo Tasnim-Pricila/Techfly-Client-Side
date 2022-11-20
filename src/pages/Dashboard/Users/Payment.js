@@ -30,14 +30,14 @@ const Payment = () => {
         <div className='md:w-1/2 mt-12'>
             <div className="shadow-xl mr-2">
                 <div className="card-body border-2 rounded-lg border-purple-400">
-                    <h2 className="card-title">Payment for <span className='text-secondary'> {orders.productName} </span> </h2>
-                    <p className='pt-8 font-bold'> Pay: <span className='text-primary font-semibold text-xl'> ${orders.price}</span>   </p>
+                    <h2 className="card-title">Payment for <span className='text-secondary'> {orders.data.productName} </span> </h2>
+                    <p className='pt-8 font-bold'> Pay: <span className='text-primary font-semibold text-xl'> ${orders.data.price}</span>   </p>
                 </div>
             </div>
             <div className="shadow-xl mt-12 mr-2">
                 <div className="card-body border-2 rounded-lg border-purple-400">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm orders={orders} />
+                        <CheckoutForm orders={orders.data} />
                     </Elements>
                 </div>
             </div>

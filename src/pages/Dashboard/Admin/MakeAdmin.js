@@ -6,7 +6,7 @@ import Loading from '../../../Shared/Loading';
 const MakeAdmin = () => {
     // GEt USers 
     const { data: users, isLoading, refetch } = useQuery('users', () =>
-        fetch('https://techfly-api.onrender.com/users', {
+        fetch('https://techfly-api.onrender.com/user', {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -27,7 +27,7 @@ const MakeAdmin = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount > 0) {
+                if (data.data.modifiedCount > 0) {
                     toast.success('User Added as Admin Successfully', {
                         theme: 'colored',
                         delay: 0,
@@ -51,7 +51,7 @@ const MakeAdmin = () => {
                         </thead>
                         <tbody>
                             {
-                                users.map((user, index) =>
+                                users.data.map((user, index) =>
                                     <tr key={user._id}>
                                         <th>{index + 1}</th>
                                         <td className='font-semibold text-secondary'> {user.email} </td>
