@@ -8,6 +8,7 @@ const Dashboard = () => {
 
     const [user, loading] = useAuthState(auth);
     const [admin] = useAdmin(user);
+    
     if (loading) {
         <p>Loading...</p>
     }

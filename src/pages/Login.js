@@ -6,20 +6,24 @@ import SocialLogin from '../Shared/SocialLogin';
 import useToken from '../CustomHook/useToken';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../Shared/Loading';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const [loading, setLoading] = useState(false);
 
-     const [error, setError] = useState({
+    const [error, setError] = useState({
         email: "",
         password: "",
         others: ""
     })
+
     const [signInWithEmailAndPassword, loginUser, loginLoading, loginError] = useSignInWithEmailAndPassword(auth);
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
+        setLoading(true);
         const { email, password } = data;
         signInWithEmailAndPassword(email, password);
         setError({});
@@ -30,9 +34,14 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/';
     useEffect(() => {
         if (token) {
+            setLoading(false);
+            reset();
+            toast.success('Login Successful ', {
+                theme: 'colored',
+            });
             navigate(from, { replace: true });
         }
-    }, [from, navigate, token])
+    }, [token])
 
     useEffect(() => {
         if (loginError) {
@@ -49,7 +58,7 @@ const Login = () => {
         }
     }, [loginError]);
 
-    if (loginLoading) {
+    if (loginLoading || loading) {
         return <Loading></Loading>
     }
 
@@ -67,22 +76,20 @@ const Login = () => {
 
                         <input placeholder='Password' type="password" className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' {...register("password", { required: true })} />
                         <small className='text-error font-semibold px-10'>
-                            {errors.password?.type === 'required' && "Password is required"}      
-                            {error.password}  
+                            {errors.password?.type === 'required' && "Password is required"}
+                            {error.password}
                         </small>
 
                         <input type="submit" className="btn btn-warning w-[320px] self-center" value='Login' />
-                        <small className='text-error font-semibold px-10'>        
-                            {error.others}              
+                        <small className='text-error font-semibold px-10'>
+                            {error.others}
                         </small>
 
                     </form>
                     <p className='text-right pr-12 py-1'>New to TechFly? <Link to='/signup' className='text-yellow-800 font-semibold'>Sign Up</Link></p>
                     <SocialLogin></SocialLogin>
                 </div>
-
             </div>
-
         </div>
     );
 };

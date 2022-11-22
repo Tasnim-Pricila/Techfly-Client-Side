@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +16,7 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
     if (loading) {
         return <Loading></Loading>
     }
-    console.log(part);
+    // console.log(part);
     const { title, price, availableQuantity, image, minimumOrderQuantity, description } = part;
 
     const availableQty = parseInt(availableQuantity);
@@ -56,7 +57,7 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.data.acknowledged === true) {
+                if (data?.data?.acknowledged === true) {
                     toast.success('Your order is placed', {
                         theme: 'colored',
                         delay: 0,
@@ -71,7 +72,7 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
                     });
                 }
                 refetch();
-                setModalData(null);
+                // setModalData(null);
             })
     }
 
@@ -102,7 +103,7 @@ const SingleItem = ({ part, setModalData, minQuantity, refetch }) => {
             <div className='md:w-1/3 mx-auto border-4 my-8'>
                 <form onSubmit={handleSubmit} className='flex flex-col gap-4 my-8 '>
                     <label htmlFor="Quantity" className='font-semibold md:pl-24 pl-8'>Quantity</label>
-                    <input placeholder='quantity' name='quantity' type="number" inputmode="numeric" defaultValue={minQty} className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' onKeyUp={handleQuantity} required />
+                    <input placeholder='quantity' name='quantity' type="number" defaultValue={minQty} className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' onKeyUp={handleQuantity} required />
                     <small className='text-center text-error font-bold'>
                         {error}
                     </small>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useToken from '../CustomHook/useToken';
 import auth from '../firebase.init';
 import Loading from '../Shared/Loading';
@@ -9,6 +10,7 @@ import SocialLogin from '../Shared/SocialLogin';
 
 const Signup = () => {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const [signupError, setSignupError] = useState({
         email: "",
         password: "",
@@ -21,6 +23,7 @@ const Signup = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = async data => {
+        setLoading(true);
         const userData = data;
         const { name, email, password, cpassword } = userData;
         if (password === cpassword) {
@@ -39,6 +42,11 @@ const Signup = () => {
 
     useEffect(() => {
         if (token) {
+            setLoading(false)
+            reset();
+            toast.success('Signup Successful ', {
+                theme: 'colored',
+            });
             navigate('/');
         }
     }, [token, navigate])
@@ -58,7 +66,7 @@ const Signup = () => {
         }
     }, [emailError]);
 
-    if (emailLoading || updating) {
+    if (emailLoading || updating || loading) {
         return <Loading></Loading>
     }
 
@@ -103,7 +111,7 @@ const Signup = () => {
                             {signupError.others}
                         </small>
                     </form>
-                    <p className='text-right pr-12 py-1'>Already Have an Account on TechFly? <Link to='/login' className='text-yellow-800 font-semibold'>Login</Link></p>
+                    <p className='text-right pr-12 py-1 text-sm'>Already Have an Account on TechFly? <Link to='/login' className='text-yellow-800 font-semibold'>Login</Link></p>
                     <SocialLogin></SocialLogin>
                 </div>
             </div>

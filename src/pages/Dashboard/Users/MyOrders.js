@@ -1,7 +1,5 @@
-import { faArrowRight, faArrowRightArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TrashIcon } from '@heroicons/react/solid';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
@@ -76,7 +74,7 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.data.map((order, index) =>
+                            orders?.data?.map((order, index) =>
                                 <tr key={order._id}>
                                     <th>{index + 1}</th>
                                     <td className='font-semibold text-secondary'>{order.productName}</td>

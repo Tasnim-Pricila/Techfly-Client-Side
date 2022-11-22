@@ -77,7 +77,7 @@ const Header = () => {
                     <NavLink to='/contact'
                         className={({ isActive }) => (isActive ? "text-secondary pb-1 relative before:inline-block before:absolute before:bg-secondary before:w-full before:h-[0.1rem] before:bottom-0 " : "pb-1")} onClick={handleScroll}>
                         Contact
-                    </NavLink> 
+                    </NavLink>
                     {
                         !user ?
                             <NavLink to='/login'
@@ -87,7 +87,7 @@ const Header = () => {
                             :
                             <>
                                 <button className='btn btn-secondary' onClick={logOut}>Logout
-                                <FontAwesomeIcon icon={faSignOutAlt} className='pl-2'></FontAwesomeIcon> </button>
+                                    <FontAwesomeIcon icon={faSignOutAlt} className='pl-2'></FontAwesomeIcon> </button>
                             </>
                     }
                 </div>
