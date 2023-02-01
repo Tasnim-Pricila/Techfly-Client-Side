@@ -1,6 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
-
+import one from './../../images/banner-1.jpg'
+import two from './../../images/banner-2.jpg'
+import three from './../../images/banner-3.jpg'
 
 const Banner = () => {
     const settings = {
@@ -15,21 +17,21 @@ const Banner = () => {
     // Banner Array
     const banners = [
         {
-            image: 'https://i.ibb.co/NLwYvWJ/banner-1.jpg',
+            image: one,
             smallTitle: 'Techfly MANUFACTURING',
             title: 'Providing',
             title1: 'BEST PRODUCTS',
             description: 'We won Many Industrial Awards and Got Many Certificates Since 2001-2022',
         },
         {
-            image: 'https://i.ibb.co/vzCZd7J/banner-2.jpg',
+            image: two,
             smallTitle: 'Techfly MANUFACTURING',
             title: 'Providing',
             title1: 'BEST PRODUCTS',
             description: 'We won Many Industrial Awards and Got Many Certificates Since 2001-2022',
         },
         {
-            image: 'https://i.ibb.co/LZJFjxB/banner3.jpg',
+            image: three,
             smallTitle: 'Techfly MANUFACTURING',
             title: 'Providing',
             title1: 'BEST PRODUCTS',

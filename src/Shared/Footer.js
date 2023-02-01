@@ -77,7 +77,8 @@ const Footer = () => {
                 </div>
                 { goTopBtn &&
                     <button onClick={goToTop} className='hidden md:block shadow-2xl shadow-orange-500'>
-                    <FontAwesomeIcon icon={faArrowUp} className='text-white bg-orange-400 py-4 px-6 text-center right-4 bottom-24 fixed '></FontAwesomeIcon>
+                    <FontAwesomeIcon icon={faArrowUp} className='text-white bg-orange-400 
+                    py-4 px-6 text-center right-4 bottom-24 fixed '></FontAwesomeIcon>
                 </button>
                 }
             </div>

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Loading from '../Shared/Loading';
 
 const AllParts = () => {
+    
     const navigate = useNavigate();
     const { data: parts, isLoading } = useQuery('parts', () =>
         fetch(`https://techfly-api.onrender.com/parts`)

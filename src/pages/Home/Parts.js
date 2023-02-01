@@ -57,7 +57,7 @@ const Parts = () => {
                 
             </div>
             <div className='flex justify-center mb-8'>
-                    <button className='btn btn-secondary btn-outline' onClick={handleClick}>All PArts</button>
+                    <button className='btn btn-secondary btn-outline' onClick={handleClick}>All Parts</button>
                 </div>
         </>
 
