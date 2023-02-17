@@ -32,11 +32,11 @@ const SocialLogin = () => {
 
     return (
         <div className='flex flex-col items-center px-4'>
-            <div className='divider md:w-[320px] w-full self-center'>OR</div>
+            <div className='divider w-full self-center'>OR</div>
             <div className='group'>
-                <button className='md:w-[320px] capitalize border-2 border-yellow-500 rounded-md py-2 font-semibold hover:bg-yellow-500 group-hover:text-white px-12'
+                <button className='capitalize border-2 border-yellow-500 rounded-md py-2 font-semibold hover:bg-yellow-500 group-hover:text-white sm:px-12 px-6'
                     onClick={() => handleGoogleLogin()}>
-                    <FontAwesomeIcon icon={faGoogle} className='pr-10 text-orange-500 group-hover:text-white'></FontAwesomeIcon>
+                    <FontAwesomeIcon icon={faGoogle} className='pr-2 sm:pr-10 text-orange-500 group-hover:text-white'></FontAwesomeIcon>
                     Sign In With Google
                 </button>
             </div>

@@ -63,30 +63,34 @@ const Login = () => {
     }
 
     return (
-        <div className='h-screen'>
-            <div className='h-full'>
-                <div className='md:w-1/4 mx-auto py-20 rounded-lg my-20 shadow-xl'>
+        <div className='my-10'>
+            <div className='h-full px-2 sm:px-10'>
+                <div className='lg:w-2/4 mx-auto py-20 px-2 rounded-lg my-20 shadow-2xl'>
                     <p className='text-2xl mb-8 uppercase font-bold text-center'>Login</p>
-                    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4 '>
-                        <input placeholder='Email' type="email" className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' {...register("email", { required: true })} />
-                        <small className='text-error font-semibold px-10'>
+                    <form onSubmit={handleSubmit(onSubmit)} className='sm:px-10'>
+
+                        <input placeholder='Email' type="email" className='input input-bordered border-black focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent block w-full ' 
+                        {...register("email", { required: true })} />
+                        <small className='text-error font-semibold'>
                             {errors.email?.type === 'required' && "Email is required"}
                             {error.email}
                         </small>
 
-                        <input placeholder='Password' type="password" className='input input-bordered border-black w-full max-w-xs self-center focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent' {...register("password", { required: true })} />
-                        <small className='text-error font-semibold px-10'>
+                        <input placeholder='Password' type="password" className='input input-bordered border-black focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent block w-full mt-4' 
+                        {...register("password", { required: true })} />
+                        <small className='text-error font-semibold'>
                             {errors.password?.type === 'required' && "Password is required"}
                             {error.password}
                         </small>
 
-                        <input type="submit" className="btn btn-warning w-[320px] self-center" value='Login' />
+                        <input type="submit" className="btn btn-warning block w-full mt-4" value='Login' />
                         <small className='text-error font-semibold px-10'>
                             {error.others}
                         </small>
 
                     </form>
-                    <p className='text-right pr-12 py-1'>New to TechFly? <Link to='/signup' className='text-yellow-800 font-semibold'>Sign Up</Link></p>
+                  
+                    <p className='text-right py-1 sm:px-10'>New to TechFly? <Link to='/signup' className='text-yellow-800 font-semibold'>Sign Up</Link></p>
                     <SocialLogin></SocialLogin>
                 </div>
             </div>
